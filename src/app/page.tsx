@@ -1,9 +1,36 @@
-// pages/index.js
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
+"use client"
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import Script from 'next/script';
+import { useEffect, useRef } from 'react';
+import Typed from 'typed.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub} from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Home() {
+  const typedElement = useRef(null);
+
+  useEffect(() => {
+    const options = {
+      strings: ['Developer', 'Problem Solver', 'Collaborative'],
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 1000,
+      startDelay: 1000,
+      loop: true,
+      showCursor: true,
+    };
+
+    const typed = new Typed(typedElement.current, options);
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
       <Head>
@@ -46,13 +73,15 @@ export default function Home() {
         </div>
       </header>
 
-
       <main>
         <section id="about" className="hero bg-gray-900 text-white py-20">
           <div className="container mx-auto text-center flex flex-col items-center">
             <Image src="/my_photo.jpg" alt="my image" height={800} width={400} className="mb-6" />
             <h2 className="text-4xl font-bold mb-4">Hello, I'm Thomas</h2>
-            <p className="text-lg mb-8">I am a Software Engineer. Welcome to my portfolio!</p>
+            <h3 className="text-xl font-bold mb-4">
+              <span ref={typedElement}></span>
+            </h3>
+            <p className="text-lg mb-8 w-1/2">I am a recent Computer Science graduate from the University of California, Santa Cruz. I am a Software Engineer with a focus on web development, but would like to also explore new areas.</p>
             <Link href="#projects">View My Work</Link>
           </div>
         </section>
@@ -100,10 +129,23 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-blue-600 text-white py-4">
-        <div className="container mx-auto text-center">
-        </div>
+      <footer className="bg-gray-900 text-white py-4">
+        <div className="container mx-auto text-center flex flex-col items-center">
+            <div className="flex space-x-6">
+              <a href="mailto:thomastoy1415@gmail.com" className="text-white hover:text-gray-400 transition-colors duration-300" aria-label="Email">
+                <FontAwesomeIcon icon={faEnvelope} className="w-6 h-6 text-white hover:text-blue-500 transition-colors duration-300" />
+              </a>
+              <a href="https://www.linkedin.com/in/thomas-toy/" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6 text-white hover:text-blue-500 transition-colors duration-300" />
+              </a>
+              <a href="https://github.com/ttoy12" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faGithub} className="w-6 h-6 text-white hover:text-blue-500 transition-colors duration-300" />
+              </a>
+            </div>
+          </div>
       </footer>
+      
+      <Script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" strategy="beforeInteractive" />
     </div>
-  )
-}
+  );
+};
