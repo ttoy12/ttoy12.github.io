@@ -8,6 +8,7 @@ import Typed from 'typed.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub} from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import DetectiveDollarSlideShow from './components/DetectiveDollarSlideshow';
 
 
 export default function Home() {
@@ -170,7 +171,8 @@ export default function Home() {
                 <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
                   <h3 className="text-xl font-semibold mb-2">Detective Dollar</h3>
                   <div className="flex justify-center items-center">
-                    <Image src="/Detective_Dollar.jpg" alt="detective dollar" height={300} width={400} className="border border-black border-2 rounded-lg mb-4" />
+                    <Image src="/DetectiveDollar/DetectiveDollar2.png" alt="yujafiy" height={400} width={400} className=" mb-4"/>
+                    {/* <DetectiveDollarSlideShow/> */}
                   </div>
                   <p className="text-gray-700">Detective Dollar is a cross-platform mobile expense tracker. It was built with Expo Go. Expo Go's SQLite was used to efficiently store, retrieve, and process user-inputted data. React-native-gifted-charts was used to create data visualizations to provide users with insights into their spending habits.</p>
                 </div>
@@ -185,6 +187,16 @@ export default function Home() {
                   <p className="text-gray-700">Yujafiy is a project my team worked on for a hackathon. Our idea was to make something to help improve student engagement, and we planned on doing so by replacing the voices for lecture videos. We created a Google Chrome extension and integrated TopMedia API in order to modify the voice of professors in lecture recordings with a user-selected voice. This project was built with javascript, HTML/CSS, flask, python, and TopMedia API.</p>
                 </div>
               </a>
+
+              <a href="https://www.linkedin.com/in/thomas-toy/" target="_blank" rel="noopener noreferrer">
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
+                  <h3 className="text-xl font-semibold mb-2">In Progres</h3>
+                  <div className="flex justify-center items-center">
+                    <Image src="/WIP.jpg" alt="work in progress" height={400} width={400} className=" mb-4"/>
+                  </div>
+                  <p className="text-gray-700">In Progress</p>
+                </div>
+              </a>              
             </div>
           </div>
         </section>
