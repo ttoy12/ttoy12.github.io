@@ -124,7 +124,7 @@ export default function Home() {
 
             <h3 className="text-xl font-bold mb-4">Skills</h3>
             <div className="flex flex-wrap justify-center mb-8">
-              {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Nextjs', 'Expo', 'TypeScript', 'Jest', 'HTML', 'CSS', 'SQL'].map(skill => (
+              {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Nextjs', 'Expo', 'React Native', 'TypeScript', 'Jest', 'HTML', 'CSS', 'SQL'].map(skill => (
                 <span key={skill} className="bg-gray-800 text-white py-2 px-4 m-2 rounded-lg">
                   {skill}
                 </span>
@@ -165,18 +165,26 @@ export default function Home() {
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold mb-4">Project 1</h3>
-                <p className="text-gray-700">Description of project 1.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold mb-4">Project 2</h3>
-                <p className="text-gray-700">Description of project 2.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-xl font-semibold mb-4">Project 3</h3>
-                <p className="text-gray-700">Description of project 3.</p>
-              </div>
+              
+              <a href="https://github.com/RazrSlyr/DetectiveDollar" target="_blank" rel="noopener noreferrer">
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
+                  <h3 className="text-xl font-semibold mb-2">Detective Dollar</h3>
+                  <div className="flex justify-center items-center">
+                    <Image src="/Detective_Dollar.jpg" alt="detective dollar" height={300} width={400} className="border border-black border-2 rounded-lg mb-4" />
+                  </div>
+                  <p className="text-gray-700">Detective Dollar is a cross-platform mobile expense tracker. It was built with Expo Go. Expo Go's SQLite was used to efficiently store, retrieve, and process user-inputted data. React-native-gifted-charts was used to create data visualizations to provide users with insights into their spending habits.</p>
+                </div>
+              </a>
+
+              <a href="https://devpost.com/software/yujafy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
+                  <h3 className="text-xl font-semibold mb-4">Yujafiy</h3>
+                  <div className="flex justify-center items-center">
+                    <Image src="/yujafiy.png" alt="yujafiy" height={400} width={400} className=" mb-4"/>
+                  </div>
+                  <p className="text-gray-700">Yujafiy is a project my team worked on for a hackathon. Our idea was to make something to help improve student engagement, and we planned on doing so by replacing the voices for lecture videos. We created a Google Chrome extension and integrated TopMedia API in order to modify the voice of professors in lecture recordings with a user-selected voice. This project was built with javascript, HTML/CSS, flask, python, and TopMedia API.</p>
+                </div>
+              </a>
             </div>
           </div>
         </section>
