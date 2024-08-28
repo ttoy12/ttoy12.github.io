@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub} from '@fortawesome/free-brands-svg-icons';
@@ -11,6 +11,10 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   const typedElement = useRef(null);
 
   useEffect(() => {
@@ -39,23 +43,57 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-gray-900 text-white p-6 fixed top-0 left-0 w-full">
+      <header className="bg-blue-800 text-white p-6 fixed top-0 left-0 w-full z-10">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-3xl font-bold">My Portfolio</h1>
-          <nav>
-            <ul className="flex space-x-4">
+          <button
+            className="text-white md:hidden focus:outline-none"
+            onClick={toggleMenu}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d={menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+              ></path>
+            </svg>
+          </button>
+          <nav
+            className={`${
+              menuOpen ? 'block' : 'hidden'
+            } md:flex space-x-4 absolute md:static w-full md:w-auto left-0 top-full md:top-auto`}
+          >
+            <ul className="flex flex-col md:flex-row space-y-4 bg-blue-800 md:space-y-0 md:space-x-4 p-4 md:p-0">
               <li className="text-xl">
                 <Link
                   href="#about"
-                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500 pb-1"
+                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
+                  onClick={() => setMenuOpen(false)}
                 >
                   About
                 </Link>
               </li>
               <li className="text-xl">
                 <Link
+                  href="#experience"
+                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Experience
+                </Link>
+              </li>
+              <li className="text-xl">
+                <Link
                   href="#projects"
-                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500 pb-1"
+                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Projects
                 </Link>
@@ -63,7 +101,8 @@ export default function Home() {
               <li className="text-xl">
                 <Link
                   href="#contact"
-                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500 pb-1"
+                  className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Contact
                 </Link>
@@ -82,11 +121,47 @@ export default function Home() {
               <span ref={typedElement}></span>
             </h3>
             <p className="text-lg mb-8 w-1/2">I am a recent Computer Science graduate from the University of California, Santa Cruz. I am a Software Engineer with a focus on web development, but would like to also explore new areas.</p>
-            <Link href="#projects">View My Work</Link>
+
+            <h3 className="text-xl font-bold mb-4">Skills</h3>
+            <div className="flex flex-wrap justify-center mb-8">
+              {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Nextjs', 'Expo', 'TypeScript', 'Jest', 'HTML', 'CSS', 'SQL'].map(skill => (
+                <span key={skill} className="bg-gray-800 text-white py-2 px-4 m-2 rounded-lg">
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            <a href="https://github.com/ttoy12/Resume/blob/e5a2769dd84580e0870af235cdf59a12f843db9c/ThomasToyResume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+              Click here to checkout my resume
+            </a>
           </div>
         </section>
 
-        <section id="projects" className="py-20">
+        <section id="experience" className="bg-gray-300 py-20">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-8">Experience</h2>
+            <div className="grid grid-cols-1 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold">UNIBA INC.</h3>
+                <h3 className="text-l text-gray-600 font-semibold">Web Development Intern</h3>
+                <h3 className="text-l text-gray-500">July 2024 - August 2024</h3>
+                <h3 className="text-l mb-2 text-gray-500">Tokyo, Japan</h3>
+                <p className="w-2/3 mx-auto">In this summer internship, I worked at Uniba Inc., a web development agency in Japan. I had a variety of tasks and contributed to the company's CI pipeline. On one of their projects, I transitioned the front-end framework from EJS to Next.js, boosting performance and scalability. To ensure code reliability and UI consistency, I implemented front-end testing with Jest and Storybook. Additionally, I cleaned and transformed data from the Holaspirit API to create an interactive chart using D3.js and integrated and customized Pages CMS for dynamic content management.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold">UCSC Police Department</h3>
+                <h3 className="text-l text-gray-600 font-semibold">Software Engineering Intern</h3>
+                <h3 className="text-l text-gray-500">January 2024 - June 2024</h3>
+                <h3 className="text-l mb-2 text-gray-500">Santa Cruz, California</h3>
+                <p className="w-2/3 mx-auto">
+                During my time at UCSC Police Department, I worked with a team to develop a comprehensive inventory management system with support for advanced search and filtering capabilities. Throughout the project, I collaborated closely with end users, gathering feedback and iteratively refining designs in Figma to create a user-centric interface that is both highly usable and visually appealing. I also worked on making the history tracking page automatic so that it would log all actions taken on inventory items, ensuring a reliable audit trail. To enhance the auditing process, I created a dynamic dashboard for location-based scanning and auditing using RFID readers. Leveraging React.js and Material-UI, I ensured a responsive and intuitive user experience across all pages. Additionally, I implemented RESTful API endpoints using Express, Node.js, and OpenAPI to efficiently manage inventory operations. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>        
+
+        <section id="projects" className="bg-gray-350 py-4">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -123,7 +198,7 @@ export default function Home() {
                 <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
                 <textarea id="message" rows={4} className="w-full px-4 py-2 border rounded-lg text-black" required></textarea>
               </div>
-              <button type="submit" className="bg-blue-500 text-white px-6 py-3 rounded-lg">Send Message</button>
+              <button type="submit" className="bg-blue-800 text-white px-6 py-3 rounded-lg">Send Message</button>
             </form>
           </div>
         </section>
