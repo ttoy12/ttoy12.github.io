@@ -4,22 +4,24 @@ import emailjs from '@emailjs/browser';
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm('service_wx9rt9o', 'template_br9qfev', form.current, {
-        publicKey: 'KmrpDOrH6czSND86J',
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!');
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
-    e.target.reset();
+    if (form.current) {
+      emailjs
+        .sendForm('service_wx9rt9o', 'template_br9qfev', form.current, {
+          publicKey: 'KmrpDOrH6czSND86J',
+        })
+        .then(
+          () => {
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+          },
+        );
+      }
+      e.currentTarget.reset();
   };
 
   return (
