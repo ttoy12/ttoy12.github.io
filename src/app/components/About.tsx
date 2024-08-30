@@ -28,7 +28,7 @@ const About = () => {
     <section id="about" className="hero bg-gray-900 text-white py-20">
     <div className="container mx-auto text-center flex flex-col items-center">
       <Image src="/my_photo.jpg" alt="my image" height={800} width={400} className="mb-6" />
-      <h2 className="text-4xl font-bold mb-4">Hello, I'm Thomas</h2>
+      <h2 className="text-4xl font-bold mb-4">Hello, I&apos;m Thomas</h2>
       <h3 className="text-xl font-bold mb-4">
         <span ref={typedElement}></span>
       </h3>

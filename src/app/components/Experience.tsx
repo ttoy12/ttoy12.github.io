@@ -11,7 +11,7 @@ const Experience = () => {
           <h3 className="text-l text-gray-600 font-semibold">Web Development Intern</h3>
           <h3 className="text-l text-gray-500">July 2024 - August 2024</h3>
           <h3 className="text-l mb-2 text-gray-500">Tokyo, Japan</h3>
-          <p className="w-2/3 mx-auto">In this summer internship, I worked at Uniba Inc., a web development agency in Japan. I had a variety of tasks and contributed to the company's CI pipeline. On one of their projects, I transitioned the front-end framework from EJS to Next.js, boosting performance and scalability. To ensure code reliability and UI consistency, I implemented front-end testing with Jest and Storybook. Additionally, I cleaned and transformed data from the Holaspirit API to create an interactive chart using D3.js and integrated and customized Pages CMS for dynamic content management.</p>
+          <p className="w-2/3 mx-auto">In this summer internship, I worked at Uniba Inc., a web development agency in Japan. I had a variety of tasks and contributed to the company&apos;s CI pipeline. On one of their projects, I transitioned the front-end framework from EJS to Next.js, boosting performance and scalability. To ensure code reliability and UI consistency, I implemented front-end testing with Jest and Storybook. Additionally, I cleaned and transformed data from the Holaspirit API to create an interactive chart using D3.js and integrated and customized Pages CMS for dynamic content management.</p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h3 className="text-xl font-semibold">UCSC Police Department</h3>
