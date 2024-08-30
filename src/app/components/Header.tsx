@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link';
 
 interface HeaderProps {
     menuOpen: boolean;
@@ -7,6 +6,13 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="bg-blue-800 text-white p-6 fixed top-0 left-0 w-full z-10">
     <div className="container mx-auto flex justify-between items-center">
@@ -37,40 +43,36 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
       >
         <ul className="flex flex-col md:flex-row space-y-4 bg-blue-800 md:space-y-0 md:space-x-4 p-4 md:p-0">
           <li className="text-xl">
-            <Link
-              href="#about"
+            <button
               className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-              onClick={toggleMenu}
+              onClick={() => { scrollToSection('about'); toggleMenu(); }}
             >
               About
-            </Link>
+            </button>
           </li>
           <li className="text-xl">
-            <Link
-              href="#experience"
+            <button
               className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-              onClick={toggleMenu}
+              onClick={() => { scrollToSection('experience'); toggleMenu(); }}
             >
               Experience
-            </Link>
+            </button>
           </li>
           <li className="text-xl">
-            <Link
-              href="#projects"
+            <button
               className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-              onClick={toggleMenu}
+              onClick={() => { scrollToSection('projects'); toggleMenu(); }}
             >
               Projects
-            </Link>
+            </button>
           </li>
           <li className="text-xl">
-            <Link
-              href="#contact"
+            <button
               className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-              onClick={toggleMenu}
+              onClick={() => { scrollToSection('contact'); toggleMenu(); }}
             >
               Contact
-            </Link>
+            </button>
           </li>
         </ul>
       </nav>
