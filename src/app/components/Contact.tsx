@@ -14,7 +14,7 @@ const Contact = () => {
         })
         .then(
           () => {
-            console.log('SUCCESS!');
+            console.log('MESSAGE SUCCESS!');
           },
           (error) => {
             console.log('FAILED...', error.text);
