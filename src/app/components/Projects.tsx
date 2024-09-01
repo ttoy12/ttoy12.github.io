@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import DetectiveDollarSlideShow from './DetectiveDollarSlideshow'
+import "./animations.css"
 
 const Projects = () => {
   return (
@@ -10,7 +11,7 @@ const Projects = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <a href="https://github.com/RazrSlyr/DetectiveDollar" target="_blank" rel="noopener noreferrer">
-          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
+          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
             <h3 className="text-xl font-semibold mb-2">Detective Dollar</h3>
             <div className="flex justify-center items-center">
               <Image src="/DetectiveDollar/DetectiveDollar2.png" alt="yujafiy" height={400} width={400} className=" mb-4"/>
@@ -21,7 +22,7 @@ const Projects = () => {
         </a>
 
         <a href="https://devpost.com/software/yujafy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
+          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
             <h3 className="text-xl font-semibold mb-4">Yujafiy</h3>
             <div className="flex justify-center items-center">
               <Image src="/yujafiy.png" alt="yujafiy" height={400} width={400} className=" mb-4"/>
@@ -31,8 +32,8 @@ const Projects = () => {
         </a>
 
         <a href="https://www.linkedin.com/in/thomas-toy/" target="_blank" rel="noopener noreferrer">
-          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300">
-            <h3 className="text-xl font-semibold mb-2">In Progres</h3>
+          <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
+            <h3 className="text-xl font-semibold mb-2">In Progress</h3>
             <div className="flex justify-center items-center">
               <Image src="/WIP.jpg" alt="work in progress" height={400} width={400} className=" mb-4"/>
             </div>

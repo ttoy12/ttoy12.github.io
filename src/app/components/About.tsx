@@ -8,7 +8,7 @@ const About = () => {
 
     useEffect(() => {
       const options = {
-        strings: ['Developer', 'Problem Solver', 'Collaborative'],
+        strings: ['Developer', 'Problem Solver', 'Collaborater'],
         typeSpeed: 100,
         backSpeed: 50,
         backDelay: 1000,
@@ -25,9 +25,9 @@ const About = () => {
     }, []);
 
     return (
-    <section id="about" className="hero bg-gray-900 text-white py-20">
+    <section id="about" className="hero bg-gray-900 text-white py-20 mt-10">
     <div className="container mx-auto text-center flex flex-col items-center">
-      <Image src="/my_photo.jpg" alt="my image" height={800} width={400} className="mb-6" />
+      <Image src="/my_photo2.jpg" alt="my image" height={800} width={400} className="mb-6" />
       <h2 className="text-4xl font-bold mb-4">Hello, I&apos;m Thomas</h2>
       <h3 className="text-xl font-bold mb-4">
         <span ref={typedElement}></span>
@@ -36,8 +36,8 @@ const About = () => {
 
       <h3 className="text-xl font-bold mb-4">Skills</h3>
       <div className="flex flex-wrap justify-center mb-8">
-        {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Nextjs', 'Expo', 'React Native', 'TypeScript', 'Vue.js', 'Jest', 'HTML', 'CSS', 'SQL'].map(skill => (
-          <span key={skill} className="bg-gray-800 text-white py-2 px-4 m-2 rounded-lg">
+        {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Next.js', 'Expo', 'React Native', 'TypeScript', 'Vue.js', 'Jest', 'HTML', 'CSS', 'SQL'].map(skill => (
+          <span key={skill} className="bg-gray-800 text-white py-2 px-4 m-2 rounded-lg hover:scale-110 duration-300">
             {skill}
           </span>
         ))}
