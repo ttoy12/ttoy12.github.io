@@ -1,13 +1,13 @@
-import React from 'react'
-import Image from 'next/image'
-import "./animations.css"
+import React from 'react';
+import Image from 'next/image';
+import './animations.css';
 
 interface ProjectItemProps {
   title: string;
   imageSrc: string;
   imageAlt: string;
   description: string;
-  link: string
+  link: string;
 }
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ title, imageSrc, imageAlt, description, link }) => {
@@ -16,29 +16,34 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, imageSrc, imageAlt, de
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 appear-animation flex flex-col justify-between h-full">
+    <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col justify-between h-full">
       <div>
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">{title}</h3>
         <div className="flex justify-center items-center mb-4">
-          <Image src={imageSrc} alt={imageAlt} height={400} width={400} />
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            height={350}
+            width={350}
+            className="transition-transform duration-300 transform hover:scale-105"
+          />
         </div>
         <p className="text-gray-700">{description}</p>
       </div>
       <button
         onClick={handleButtonClick}
-        className="mt-4 bg-blue-500 text0white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300">
+        className="mt-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
         View Project
       </button>
     </div>
   );
-}
-
+};
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="bg-gray-350 py-20">
+    <section id="projects" className="bg-gray-50 py-20">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Projects</h2>
+        <h2 className="text-4xl font-bold mb-10 text-gray-800">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ProjectItem
             title="Slots of Flavor"
@@ -74,7 +79,7 @@ const Projects: React.FC = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
