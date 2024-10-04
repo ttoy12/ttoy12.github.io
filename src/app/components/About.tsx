@@ -43,7 +43,7 @@ const About = () => {
           ))}
         </div>
 
-        <a href="https://github.com/ttoy12/Resume/blob/e5a2769dd84580e0870af235cdf59a12f843db9c/ThomasToyResume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+        <a href="https://github.com/ttoy12/Resume/blob/main/Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
           Click here to checkout my resume
         </a>
       </div>
