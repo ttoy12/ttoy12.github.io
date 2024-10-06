@@ -1,49 +1,85 @@
-import React from 'react'
-import Image from 'next/image'
-import DetectiveDollarSlideShow from './DetectiveDollarSlideshow'
-import "./animations.css"
+import React from 'react';
+import Image from 'next/image';
+import './animations.css';
 
-const Projects = () => {
+interface ProjectItemProps {
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  description: string;
+  link: string;
+}
+
+const ProjectItem: React.FC<ProjectItemProps> = ({ title, imageSrc, imageAlt, description, link }) => {
+  const handleButtonClick = () => {
+    window.open(link, '_blank', 'noopener, noreferrer');
+  };
+
   return (
-    <section id="projects" className="bg-gray-350 py-20">
+    <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col justify-between h-full">
+      <div>
+        <h3 className="text-xl font-semibold mb-2 text-gray-800">{title}</h3>
+        <div className="flex justify-center items-center mb-4">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            height={350}
+            width={350}
+            className="transition-transform duration-300 transform hover:scale-105"
+          />
+        </div>
+        <p className="text-gray-700">{description}</p>
+      </div>
+      <button
+        onClick={handleButtonClick}
+        className="mt-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
+        View Project
+      </button>
+    </div>
+  );
+};
+
+const Projects: React.FC = () => {
+  return (
+    <section id="projects" className="bg-gray-50 py-20">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Projects</h2>
+        <h2 className="text-4xl font-bold mb-10 text-gray-800">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ProjectItem
+            title="Slots of Flavor"
+            imageSrc="/slots-of-flavor-logo.png"
+            imageAlt="Slots of Flavor logo"
+            description="Slots of Flavor is a web application designed to help people explore new restaurants. It takes in a few parameters like location and price, and will return a random restaurant that fits these parameters. This was built using Next.js with TypeScript, Firebase for user authentication, and Yelp API for restaurant data."
+            link="https://slots-of-flavor.vercel.app/welcome"
+          />
 
-          <a href="https://github.com/RazrSlyr/DetectiveDollar" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
-              <h3 className="text-xl font-semibold mb-2">Detective Dollar</h3>
-              <div className="flex justify-center items-center">
-                <Image src="/DetectiveDollar/DetectiveDollar2.png" alt="yujafiy" height={400} width={400} className=" mb-4" />
-                {/* <DetectiveDollarSlideShow/> */}
-              </div>
-              <p className="text-gray-700">Detective Dollar is a cross-platform mobile expense tracker. It was built with Expo Go. Expo Go&apos;s SQLite was used to efficiently store, retrieve, and process user-inputted data. React-native-gifted-charts was used to create data visualizations to provide users with insights into their spending habits.</p>
-            </div>
-          </a>
+          <ProjectItem
+            title="Detective Dollar"
+            imageSrc="/DetectiveDollar/DetectiveDollar2.png"
+            imageAlt="Detective Dollar app"
+            description="Detective Dollar is a cross-platform mobile expense tracker built with Expo Go. It uses SQLite to store user data efficiently and React-native-gifted-charts for visualizing spending habits."
+            link="https://github.com/RazrSlyr/DetectiveDollar"
+          />
 
-          <a href="https://devpost.com/software/yujafy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
-              <h3 className="text-xl font-semibold mb-4">Yujafiy</h3>
-              <div className="flex justify-center items-center">
-                <Image src="/yujafiy.png" alt="yujafiy" height={400} width={400} className=" mb-4" />
-              </div>
-              <p className="text-gray-700">Yujafiy is a project my team worked on for a hackathon. Our idea was to make something to help improve student engagement, and we planned on doing so by replacing the voices for lecture videos. We created a Google Chrome extension and integrated TopMedia API in order to modify the voice of professors in lecture recordings with a user-selected voice. This project was built with Javascript, HTML/CSS, flask, python, and TopMedia API.</p>
-            </div>
-          </a>
+          <ProjectItem
+            title="Yujafiy"
+            imageSrc="/yujafiy.png"
+            imageAlt="Yujafiy project"
+            description="Yujafiy is a hackathon project aimed at improving student engagement by replacing lecture video voices. Built with JavaScript, HTML/CSS, Flask, and Python, it integrates TopMedia API for voice modification."
+            link="https://devpost.com/software/yujafy"
+          />
 
-          <a href="https://devpost.com/software/recipe-help" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl duration-300 appear-animation">
-              <h3 className="text-xl font-semibold mb-2">Recipe Helper</h3>
-              <div className="flex justify-center items-center">
-                <Image src="/recipe_helper_example.jpg" alt="recipe helper" height={400} width={400} className=" mb-4" />
-              </div>
-              <p className="text-gray-700">Recipe Helper is a web application I worked on at LA Hacks 2024. You upload a photo of ingredients, and it will spit out a recipe for things to make using those ingredients. This project was built with react, Gemini API, and Firebase.</p>
-            </div>
-          </a>
+          <ProjectItem
+            title="Recipe Helper"
+            imageSrc="/recipe_helper_example.jpg"
+            imageAlt="Recipe Helper app"
+            description="Recipe Helper is a web app that generates recipes based on ingredient photos. Developed during LA Hacks 2024, it utilizes React, Gemini API, and Firebase."
+            link="https://devpost.com/software/recipe-help"
+          />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

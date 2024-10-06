@@ -32,7 +32,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      
+
       <Script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" strategy="beforeInteractive" />
     </div>
   );
