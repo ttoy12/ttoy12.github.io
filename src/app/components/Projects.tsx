@@ -49,7 +49,7 @@ const Projects: React.FC = () => {
             title="Slots of Flavor"
             imageSrc="/slots-of-flavor-logo.png"
             imageAlt="Slots of Flavor logo"
-            description="Slots of Flavor is a web application designed to help people explore new restaurants. It takes in a few parameters like location and price, and will return a random restaurant that fits these parameters. This was built using Next.js, with Firebase for user authentication and Yelp API for restaurant data."
+            description="Slots of Flavor is a web application designed to help people explore new restaurants. It takes in a few parameters like location and price, and will return a random restaurant that fits these parameters. This was built using Next.js with TypeScript, Firebase for user authentication, and Yelp API for restaurant data."
             link="https://slots-of-flavor.vercel.app/welcome"
           />
 
