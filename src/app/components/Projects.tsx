@@ -47,8 +47,8 @@ const Projects: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ProjectItem
             title="Slots of Flavor"
-            imageSrc="/slots-of-flavor-logo.png"
-            imageAlt="Slots of Flavor logo"
+            imageSrc="/Slots_of_Flavor_Welcome.jpg"
+            imageAlt="Slots of Flavor Welcome page"
             description="Slots of Flavor is a web application designed to help people explore new restaurants. It takes in a few parameters like location and price, and will return a random restaurant that fits these parameters. This was built using Next.js with TypeScript, Firebase for user authentication, and Yelp API for restaurant data."
             link="https://slots-of-flavor.vercel.app/welcome"
           />
