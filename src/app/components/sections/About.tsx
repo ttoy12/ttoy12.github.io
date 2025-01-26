@@ -29,7 +29,7 @@ const About = () => {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/sign_hill.JPG')" }}
+        style={{ backgroundImage: "url('/gallery/sign_hill.JPG')" }}
       ></div>
 
       {/* Semi-transparent overlay */}

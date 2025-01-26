@@ -8,6 +8,7 @@ import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
 import Contact from './components/sections/Contact';
 import Footer from './components/sections/Footer';
+import Gallery from './components/sections/Gallery';
 
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
         <Experience />
         <Projects />
         <Contact />
+        <Gallery />
       </main>
       <Footer />
 
