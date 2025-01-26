@@ -1,5 +1,5 @@
 import React from 'react';
-import './animations.css';
+import '../animations.css';
 import Image from 'next/image';
 import { FaCalendarAlt } from 'react-icons/fa'; // Import icons if needed
 

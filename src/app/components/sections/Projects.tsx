@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import './animations.css';
+import '../animations.css';
 
 interface ProjectItemProps {
   title: string;
