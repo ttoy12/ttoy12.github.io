@@ -2,11 +2,11 @@ import React from 'react'
 import Image from 'next/image';
 
 interface HeaderProps {
-    menuOpen: boolean;
-    toggleMenu: () => void;
+  menuOpen: boolean;
+  toggleMenu: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
+const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
   };
 
   return (
-    <header className="bg-blue-800 text-white p-6 fixed top-0 left-0 w-full z-10">
+    <header className="bg-black text-white p-6 fixed top-0 left-0 w-full z-10 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Image src="/logo_no_bg.jpg" height={45} width={45} alt="logo" />
         <button
@@ -46,11 +46,10 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
           </svg>
         </button>
         <nav
-          className={`${
-            menuOpen ? 'block' : 'hidden'
-          } md:flex space-x-4 absolute md:static w-full md:w-auto left-0 top-full md:top-auto`}
+          className={`${menuOpen ? 'block' : 'hidden'
+            } md:flex space-x-4 absolute md:static w-full md:w-auto left-0 top-full md:top-auto`}
         >
-          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 bg-blue-800">
+          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 bg-black">
             <li className="text-xl">
               <button
                 className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
@@ -73,6 +72,14 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu}) => {
                 onClick={() => { scrollToSection('projects'); toggleMenu(); }}
               >
                 Projects
+              </button>
+            </li>
+            <li className="text-xl">
+              <button
+                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
+                onClick={() => { scrollToSection('gallery'); toggleMenu(); }}
+              >
+                Gallery
               </button>
             </li>
             <li className="text-xl">
