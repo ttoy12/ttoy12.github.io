@@ -26,7 +26,7 @@ export default function Home() {
 
       <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
 
-      <main>
+      <main role='main'>
         <About />
         <Experience />
         <Projects />

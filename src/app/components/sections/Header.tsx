@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
   };
 
   return (
-    <header className="bg-black text-white p-6 fixed top-0 left-0 w-full z-10 z-50">
+    <header className="bg-black text-white p-6 fixed top-0 left-0 w-full z-10 z-50" role='navigation'>
       <div className="container mx-auto flex justify-between items-center">
         <Image src="/logo_no_bg.jpg" height={45} width={45} alt="logo" />
         <button
