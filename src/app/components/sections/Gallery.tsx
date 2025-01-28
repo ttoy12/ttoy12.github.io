@@ -45,7 +45,7 @@ const Gallery = () => {
                                 width={400}
                                 height={300}
                                 className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
-                                onLoadingComplete={() => handleImageLoad(index)}
+                                onLoad={() => handleImageLoad(index)}
                             />
                             {/* Optional: Add a hover overlay with a caption */}
                             {/* <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-opacity duration-300">
