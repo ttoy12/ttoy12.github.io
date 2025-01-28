@@ -2,12 +2,13 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import { useState } from 'react';
-import Header from './components/Header';
-import About from './components/About';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Header from './components/sections/Header';
+import About from './components/sections/About';
+import Experience from './components/sections/Experience';
+import Projects from './components/sections/Projects';
+import Contact from './components/sections/Contact';
+import Footer from './components/sections/Footer';
+import Gallery from './components/sections/Gallery';
 
 
 export default function Home() {
@@ -25,10 +26,11 @@ export default function Home() {
 
       <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
 
-      <main>
+      <main id="main-content" role='main'>
         <About />
         <Experience />
         <Projects />
+        <Gallery />
         <Contact />
       </main>
       <Footer />
