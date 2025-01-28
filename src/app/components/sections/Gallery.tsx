@@ -6,7 +6,12 @@ const Gallery = () => {
         '/logo.jpg',
         '/gallery/me_sign_hill.JPG',
         '/gallery/sign_hill.JPG',
-        '/gallery/beach.JPG'
+        '/gallery/beach.JPG',
+        '/gallery/orange_park1.JPG',
+        '/gallery/orange_park_tree.JPG',
+        // '/WIP.jpg',
+        // '/WIP.jpg',
+        // '/WIP.jpg'
     ];
 
     const [loaded, setLoaded] = useState(Array(images.length).fill(false));
