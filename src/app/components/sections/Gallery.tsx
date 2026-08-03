@@ -8,6 +8,7 @@ const Gallery = () => {
         '/gallery/sign_hill.JPG',
         '/gallery/tal_vez_fui_yo.JPG',
         '/gallery/te_amare.JPG',
+        '/gallery/T&I_flyer.JPG',
         '/gallery/beach.JPG',
         '/gallery/orange_park1.JPG',
         '/gallery/orange_park_tree.JPG',
