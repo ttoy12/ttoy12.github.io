@@ -46,6 +46,22 @@ const Projects: React.FC = () => {
         <h2 className="text-4xl font-extrabold mb-10 text-gray-800">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ProjectItem
+            title="StrikeStack"
+            imageSrc="/strikestack.jpg"
+            imageAlt="Strikestack profile page"
+            description="StrikeStack is a web application designed to help bowlers manage and track their bowling ball arsenals and performance statistics. It allows users to organize their bowling balls, record scores and performance data, and analyze results to better understand their equipment and improve their game. The application provides a centralized platform for bowlers to monitor their progress and manage their gear."
+            link="https://www.strikestackbowling.com/"
+          />
+
+          <ProjectItem
+            title="Link2Me"
+            imageSrc="/link2me_profile.jpg"
+            imageAlt="Link2Me profile page"
+            description="Link2Me is a web application designed to help users create and share a centralized profile containing all of their important links. Similar to Linktree, it provides a single platform where users can organize and access their social media profiles, payment platforms, and other online resources. The application was built to simplify link sharing and improve digital presence management."
+            link="https://www.link2me.me/"
+          />
+
+          <ProjectItem
             title="Slots of Flavor"
             imageSrc="/Slots_of_Flavor_Welcome.jpg"
             imageAlt="Slots of Flavor Welcome page"
