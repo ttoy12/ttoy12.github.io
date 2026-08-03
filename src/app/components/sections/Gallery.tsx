@@ -6,6 +6,8 @@ const Gallery = () => {
         '/logo.jpg',
         '/gallery/me_sign_hill.JPG',
         '/gallery/sign_hill.JPG',
+        '/gallery/tal_vez_fui_yo.JPG',
+        '/gallery/te_amare.JPG',
         '/gallery/beach.JPG',
         '/gallery/orange_park1.JPG',
         '/gallery/orange_park_tree.JPG',
@@ -28,7 +30,7 @@ const Gallery = () => {
         <section id="gallery" className="bg-gradient-to-r from-gray-300 to-gray-200 py-20">
             <div className="container mx-auto px-4">
                 {/* Gallery Title */}
-                <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">Photo Gallery</h2>
+                <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">Photo Gallery/Artwork</h2>
 
                 {/* Image Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
