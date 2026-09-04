@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Gallery = () => {
     const images: string[] = [
-        '/logo.jpg',
+        '/logo.jpg?v=2',
         '/gallery/me_sign_hill.JPG',
         '/gallery/sign_hill.JPG',
         '/gallery/tal_vez_fui_yo.JPG',
