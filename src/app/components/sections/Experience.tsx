@@ -62,14 +62,16 @@ const groups: RoleGroup[] = [
     roles: [
       {
         company: '1X',
-        title: 'Robotics Operator',
+        title: 'Data Collection Operator',
         dates: 'Apr 2026 – Present',
         location: 'San Carlos, California',
         logo: '/1X_logo.png',
         bullets: [
-          'Teleoperate humanoid robots in household environments to collect data for robot autonomy development',
-          'Perform data labeling, segmentation, and quality assurance on collected data',
-          'Document robot behaviors and track system issues with AI and engineering teams to improve workflows and robot performance',
+          'Teleoperate humanoid robots in household environments to collect training data for robot autonomy',
+          'Run model evaluations and test new robot OS builds, reporting regressions and behavior issues to engineering',
+          'Execute test plans with engineers and document results to improve robot performance',
+          'Design and build realistic household sets for data collection and testing',
+          'Perform segmentation, annotation, and quality assurance on collected data',
         ],
       },
       {
