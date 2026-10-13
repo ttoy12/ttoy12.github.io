@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 const description =
-  "Thomas (Tommy) Toy — UC Santa Cruz CS graduate building web apps and working hands-on with humanoid robots. Projects, experience, and drone photography.";
+  "Thomas (Tommy) Toy — UC Santa Cruz CS graduate building web apps and working hands-on with humanoid robots. Projects, experience, and photography.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ttoy2.com"),
