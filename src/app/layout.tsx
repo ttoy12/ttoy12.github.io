@@ -5,14 +5,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 const description =
-  "Thomas Toy — software engineer and UC Santa Cruz CS graduate. Projects, experience, and drone photography.";
+  "Thomas (Tommy) Toy — UC Santa Cruz CS graduate building web apps and working hands-on with humanoid robots. Projects, experience, and drone photography.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ttoy2.com"),
-  title: "Thomas Toy · Software Engineer",
+  title: "Thomas (Tommy) Toy · Portfolio",
   description,
   openGraph: {
-    title: "Thomas Toy · Software Engineer",
+    title: "Thomas (Tommy) Toy · Portfolio",
     description,
     url: "/",
     siteName: "Thomas Toy",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Thomas Toy · Software Engineer",
+    title: "Thomas (Tommy) Toy · Portfolio",
     description,
     images: ["/my_photo2.jpg"],
   },

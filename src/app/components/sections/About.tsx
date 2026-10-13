@@ -45,7 +45,7 @@ const About = () => {
             <span ref={typedElement}></span>
           </h3>
           <p className="text-lg mb-4">
-            I&apos;m a software engineer and UC Santa Cruz Computer Science graduate who builds full-stack web apps with Next.js, TypeScript, and Supabase. I&apos;m currently at 1X, collecting data and testing new software on humanoid robots alongside the engineering team.
+            I&apos;m a UC Santa Cruz Computer Science graduate who likes building things &mdash; from full-stack web apps with Next.js, TypeScript, and Supabase to hands-on work with humanoid robots at 1X, where I collect data and test new software alongside the engineering team.
           </p>
           <p className="text-lg mb-8">
             When I&apos;m not coding, I&apos;m flying drones &mdash; check out my{' '}

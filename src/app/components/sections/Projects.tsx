@@ -78,6 +78,7 @@ const projects: Project[] = [
       'Spins a slot-machine reel through nearby open restaurants filtered by location, craving, distance, and price',
       'Migrated restaurant search from the Yelp API to the Google Places API and redesigned the app mobile-first',
       'Email and Google sign-in with Firebase Auth; liked and disliked spots saved in Cloud Firestore',
+      'Reached 50+ active users',
     ],
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Google Places API'],
     links: [live('https://slots-of-flavor.vercel.app'), code('https://github.com/ttoy12/Slots-of-Flavor')],
