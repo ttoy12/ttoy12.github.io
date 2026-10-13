@@ -32,7 +32,7 @@ const Gallery = () => {
                 {/* Image Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {images.map((image, index) => (
-                        <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div key={index} className="relative aspect-square group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                             {/* Loading Skeleton */}
                             {!loaded[index] && (
                                 <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg"></div>
@@ -41,9 +41,9 @@ const Gallery = () => {
                             <Image
                                 src={image}
                                 alt={`Gallery Image ${index + 1}`}
-                                width={400}
-                                height={300}
-                                className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                                fill
+                                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                className="object-cover transform transition-transform duration-300 group-hover:scale-110"
                                 onLoad={() => handleImageLoad(index)}
                             />
                             {/* Optional: Add a hover overlay with a caption */}

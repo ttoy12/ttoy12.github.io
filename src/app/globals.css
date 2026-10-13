@@ -5,3 +5,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Keep anchor-linked sections clear of the fixed header */
+section[id] {
+  scroll-margin-top: 6rem;
+}
