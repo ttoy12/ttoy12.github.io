@@ -3,7 +3,6 @@ import Image from 'next/image';
 
 const Gallery = () => {
     const images: string[] = [
-        '/logo.jpg?v=2',
         '/gallery/me_sign_hill.JPG',
         '/gallery/sign_hill.JPG',
         '/gallery/tal_vez_fui_yo.JPG',
@@ -12,9 +11,6 @@ const Gallery = () => {
         '/gallery/beach.JPG',
         '/gallery/orange_park1.JPG',
         '/gallery/orange_park_tree.JPG',
-        // '/WIP.jpg',
-        // '/WIP.jpg',
-        // '/WIP.jpg'
     ];
 
     const [loaded, setLoaded] = useState(Array(images.length).fill(false));
