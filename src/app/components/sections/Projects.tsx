@@ -105,7 +105,7 @@ const projects: Project[] = [
     title: 'Yujafiy',
     subtitle: 'Voice changer for lecture videos',
     dates: 'Jan 2024',
-    context: hackathon('Hackathon'),
+    context: hackathon('CruzHacks 2024'),
     imageSrc: '/yujafiy.png',
     imageAlt: 'Yujafiy Chrome extension',
     bullets: [
