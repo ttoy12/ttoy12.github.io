@@ -1,121 +1,203 @@
 import React from 'react';
-import '../animations.css';
 import Image from 'next/image';
-import { FaCalendarAlt } from 'react-icons/fa'; // Import icons if needed
+import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+
+interface Role {
+  company: string;
+  title: string;
+  dates: string;
+  location: string;
+  logo?: string;
+  /** Text badge shown when there is no logo; defaults to the company's initials */
+  badge?: string;
+  bullets: string[];
+  tags?: string[];
+  preview?: { src: string; alt: string };
+}
+
+interface RoleGroup {
+  heading: string;
+  roles: Role[];
+}
+
+const groups: RoleGroup[] = [
+  {
+    heading: 'Software Engineering',
+    roles: [
+      {
+        company: 'Uniba Inc.',
+        title: 'Web Development Intern',
+        dates: 'Jul 2024 – Aug 2024',
+        location: 'Tokyo, Japan',
+        logo: '/uniba-logo.svg',
+        bullets: [
+          'Migrated the front end from EJS to Next.js for improved performance',
+          'Contributed to the CI pipeline and added front-end testing with Jest and Storybook',
+          'Built interactive data visualizations with D3.js and integrated Pages CMS for dynamic content',
+        ],
+        tags: ['Next.js', 'Jest', 'Storybook', 'D3.js', 'Pages CMS'],
+      },
+      {
+        company: 'UCSC Police Department',
+        title: 'Software Engineering Intern',
+        dates: 'Jan 2024 – Jun 2024',
+        location: 'Santa Cruz, California',
+        badge: 'PD',
+        bullets: [
+          'Built an inventory management system with advanced search capabilities',
+          'Gathered user feedback through Figma prototypes to design a user-centric interface',
+          'Automated history tracking for auditing and built a location-based dashboard powered by RFID readers',
+        ],
+        tags: ['React', 'Material-UI', 'Figma', 'RFID'],
+        preview: { src: '/UCSCPD/Item View GIF.gif', alt: 'Demo of the inventory item view' },
+      },
+    ],
+  },
+  {
+    heading: 'Robotics & AI',
+    roles: [
+      {
+        company: '1X',
+        title: 'Robotics Operator',
+        dates: 'Apr 2026 – Present',
+        location: 'San Carlos, California',
+        logo: '/1X_logo.png',
+        bullets: [
+          'Teleoperate humanoid robots in household environments to collect data for robot autonomy development',
+          'Perform data labeling, segmentation, and quality assurance on collected data',
+          'Document robot behaviors and track system issues with AI and engineering teams to improve workflows and robot performance',
+        ],
+      },
+      {
+        company: 'Labelbox',
+        title: 'Robotics Operator',
+        dates: 'Dec 2025 – Mar 2026',
+        location: 'San Francisco, California',
+        logo: '/labelbox_logo.png',
+        bullets: [
+          'Teleoperated and monitored robotic systems to defined specifications, safety regulations, and quality standards',
+          'Maintained detailed operational logs and tracked system performance',
+          'Reported anomalies to engineering teams and provided insights for troubleshooting and process improvements',
+        ],
+      },
+      {
+        company: 'T & I – AI Coaching & Consulting',
+        title: 'Co-Founder & AI Educator',
+        dates: 'Jul 2025 – Jan 2026',
+        location: 'San Mateo, California',
+        logo: '/T-I-logo.png',
+        bullets: [
+          'Co-founded a coaching practice helping older adults adopt AI tools in their everyday lives',
+          'Created beginner-friendly guides and interactive demos introducing chatbots and generative AI platforms',
+          'Led one-on-one coaching sessions to integrate AI into clients’ daily routines and workflows',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Other',
+    roles: [
+      {
+        company: 'E & F Financial Services, Inc.',
+        title: 'Administrative Assistant',
+        dates: 'Jun 2022 – Nov 2025',
+        location: 'San Mateo, California',
+        bullets: [
+          'Coordinated meetings and schedules and facilitated communication across teams',
+          'Reorganized filing systems and cleared outdated records to improve data accuracy, compliance, and retrieval',
+        ],
+      },
+    ],
+  },
+];
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter((word) => /^[A-Za-z]/.test(word))
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('');
+
+const RoleCard = ({ role }: { role: Role }) => (
+  <article className="bg-white p-6 rounded-lg shadow-md text-left flex flex-col">
+    <div className="flex items-start gap-4 mb-4">
+      {role.logo ? (
+        <Image
+          src={role.logo}
+          alt={`${role.company} logo`}
+          height={56}
+          width={56}
+          className="h-14 w-14 shrink-0 rounded border border-gray-200 object-contain bg-white"
+        />
+      ) : (
+        <div
+          className="h-14 w-14 shrink-0 rounded border border-gray-200 bg-gray-800 text-white flex items-center justify-center font-bold"
+          aria-hidden="true"
+        >
+          {role.badge ?? initials(role.company)}
+        </div>
+      )}
+      <div>
+        <h4 className="text-xl font-bold text-gray-800">{role.title}</h4>
+        <p className="text-gray-700 font-semibold">{role.company}</p>
+        <p className="text-sm text-gray-500 flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+          <span className="flex items-center">
+            <FaCalendarAlt className="mr-1.5" aria-hidden="true" /> {role.dates}
+          </span>
+          <span className="flex items-center">
+            <FaMapMarkerAlt className="mr-1.5" aria-hidden="true" /> {role.location}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-relaxed">
+      {role.bullets.map((bullet) => (
+        <li key={bullet}>{bullet}</li>
+      ))}
+    </ul>
+
+    {role.preview && (
+      <Image
+        unoptimized
+        src={role.preview.src}
+        alt={role.preview.alt}
+        height={400}
+        width={400}
+        className="mt-4 mx-auto rounded border border-gray-300"
+      />
+    )}
+
+    {role.tags && (
+      <div className="flex flex-wrap gap-2 mt-auto pt-4">
+        {role.tags.map((tag) => (
+          <span key={tag} className="bg-gray-100 text-gray-700 text-sm py-1 px-3 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </article>
+);
 
 const Experience = () => {
   return (
     <section id="experience" className="bg-gradient-to-r from-gray-300 to-gray-200 py-20">
-      <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-extrabold mb-10 text-gray-800">Experience</h2>
-        <div className="grid md:grid-cols-2 gap-10">
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                src="/1X_logo.png"
-                alt="1X logo"
-                height={250}
-                width={250}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-extrabold mb-10 text-gray-800 text-center">Experience</h2>
+        {groups.map((group) => (
+          <div key={group.heading} className="mb-12 last:mb-0">
+            <h3 className="text-2xl font-bold text-gray-700 mb-6 border-b border-gray-400 pb-2">
+              {group.heading}
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {group.roles.map((role) => (
+                <RoleCard key={role.company} role={role} />
+              ))}
             </div>
-            <h3 className="text-2xl font-bold text-gray-800">1X</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">Robotics Operator</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> April 2026 - Present | San Carlos, California
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              As a Robotics Operator/Data Collector at 1X, I teleoperated humanoid robots in household environments to support data collection and robot autonomy development while maintaining safety and quality standards. I performed data labeling, segmentation, and quality assurance, while documenting robot behaviors, tracking system issues, and collaborating with AI and engineering teams to improve workflows and robotic performance.
-            </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                src="/labelbox_logo.png"
-                alt="labelbox logo"
-                height={250}
-                width={250}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800">Labelbox</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">Robotics Operator</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> December 2025 - March 2026 | San Francisco, California
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              As a Robotics Operator at Labelbox, I teleoperated and monitored robotic systems to ensure operations aligned with defined specifications, safety regulations, and quality standards. I maintained detailed operational logs, tracked system performance, and collaborated with engineering teams by reporting anomalies and providing insights to support troubleshooting, process optimization, and workflow improvements.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                src="/T-I-logo.png"
-                alt="T&I logo"
-                height={250}
-                width={250}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800">T & I - AI Coaching & Consulting</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">AI Educator</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> July 2025 - January 2026 | San Mateo, California
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              As a Co-Founder of T & I - AI Coaching & Consulting, I developed a personal passion project focused on helping older adults explore and adopt artificial intelligence tools in their everyday lives. I created beginner-friendly guides and interactive demonstrations to introduce clients to chatbots and various generative AI platforms, while providing personalized one-on-one coaching sessions to help them integrate AI into their daily routines and workflows.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <h3 className="text-2xl font-bold text-gray-800">E & F Financial Services, Inc.</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">Administrative Assistant</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> June 2022 - November 2025 | San Mateo, California
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              During my time as an Administrative Assistant at E & F Financial Services, Inc., I supported daily operations by coordinating meetings, managing schedules, and facilitating seamless communication across teams. I organized and maintained filing systems to improve document accessibility and data retrieval, while reviewing and clearing outdated records to enhance data accuracy, compliance, and overall efficiency. Additionally, I drafted and formatted professional emails, ensuring clear and effective business communication.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                src="/uniba-logo.svg"
-                alt="Uniba Logo"
-                height={250}
-                width={250}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800">UNIBA INC.</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">Web Development Intern</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> July 2024 - August 2024 | Tokyo, Japan
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              During my internship at Uniba Inc., I contributed to the CI pipeline, transitioned the front-end framework from EJS to Next.js for improved performance, and implemented front-end testing with Jest and Storybook. Additionally, I created interactive charts using D3.js and integrated Pages CMS for dynamic content management.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                unoptimized
-                src="/UCSCPD/Item View GIF.gif"
-                alt="UCSC PD Item View"
-                height={400}
-                width={400}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800">UCSC Police Department</h3>
-            <h4 className="text-xl text-gray-600 font-semibold mb-1">Software Engineering Intern</h4>
-            <p className="text-gray-500 mb-4 flex items-center justify-center">
-              <FaCalendarAlt className="mr-2" /> January 2024 - June 2024 | Santa Cruz, California
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              At UCSC Police Department, I developed an inventory management system with advanced search capabilities. Collaborating with users, I gathered feedback in Figma to create a user-centric interface. I automated history tracking for auditing and built a location-based dashboard using RFID readers, ensuring a responsive experience with React.js and Material-UI.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

@@ -61,17 +61,17 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
             <li className="text-xl">
               <button
                 className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('experience'); toggleMenu(); }}
+                onClick={() => { scrollToSection('projects'); toggleMenu(); }}
               >
-                Experience
+                Projects
               </button>
             </li>
             <li className="text-xl">
               <button
                 className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('projects'); toggleMenu(); }}
+                onClick={() => { scrollToSection('experience'); toggleMenu(); }}
               >
-                Projects
+                Experience
               </button>
             </li>
             <li className="text-xl">
