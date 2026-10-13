@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaExternalLinkAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 interface Role {
   company: string;
@@ -13,6 +13,7 @@ interface Role {
   bullets: string[];
   tags?: string[];
   preview?: { src: string; alt: string };
+  links?: { label: string; href: string }[];
 }
 
 interface RoleGroup {
@@ -31,11 +32,13 @@ const groups: RoleGroup[] = [
         location: 'Tokyo, Japan',
         logo: '/uniba-logo.svg',
         bullets: [
-          'Migrated the front end from EJS to Next.js for improved performance',
+          'Migrated the company website from EJS to Next.js for improved performance',
+          'Built the interactive D3.js circle-packing chart that visualizes the company’s team and role structure on uniba.jp',
+          'Integrated Pages CMS and built out much of the site’s CMS-driven content',
           'Contributed to the CI pipeline and added front-end testing with Jest and Storybook',
-          'Built interactive data visualizations with D3.js and integrated Pages CMS for dynamic content',
         ],
-        tags: ['Next.js', 'Jest', 'Storybook', 'D3.js', 'Pages CMS'],
+        tags: ['Next.js', 'D3.js', 'Pages CMS', 'Jest', 'Storybook'],
+        links: [{ label: 'View the live chart', href: 'https://uniba.jp/insight/' }],
       },
       {
         company: 'UCSC Police Department',
@@ -167,6 +170,22 @@ const RoleCard = ({ role }: { role: Role }) => (
         width={400}
         className="mt-4 mx-auto rounded border border-gray-300"
       />
+    )}
+
+    {role.links && (
+      <div className="flex flex-wrap gap-4 mt-4">
+        {role.links.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-blue-700 font-medium hover:underline"
+          >
+            {link.label} <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
+          </a>
+        ))}
+      </div>
     )}
 
     {role.tags && (
