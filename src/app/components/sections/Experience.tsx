@@ -70,7 +70,6 @@ const groups: RoleGroup[] = [
           'Teleoperate humanoid robots in household environments to collect training data for robot autonomy',
           'Test new robot OS builds, reporting regressions and behavior issues to engineering',
           'Execute test plans with engineers and document results to improve robot performance',
-          'Design and build realistic household sets for data collection and testing',
           'Perform segmentation, annotation, and quality assurance on collected data',
         ],
       },
