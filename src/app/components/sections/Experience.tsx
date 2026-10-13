@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaCalendarAlt, FaExternalLinkAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { BulletList, CardLink, GroupHeading, LinkRow, MetaLine, TagList, cardClassName } from '../CardParts';
 
 interface Role {
   company: string;
@@ -13,7 +14,7 @@ interface Role {
   bullets: string[];
   tags?: string[];
   preview?: { src: string; alt: string };
-  links?: { label: string; href: string }[];
+  links?: CardLink[];
 }
 
 interface RoleGroup {
@@ -123,7 +124,7 @@ const initials = (name: string) =>
     .join('');
 
 const RoleCard = ({ role }: { role: Role }) => (
-  <article className="bg-white p-6 rounded-lg shadow-md text-left flex flex-col">
+  <article className={cardClassName}>
     <div className="flex items-start gap-4 mb-4">
       {role.logo ? (
         <Image
@@ -144,22 +145,16 @@ const RoleCard = ({ role }: { role: Role }) => (
       <div>
         <h4 className="text-xl font-bold text-gray-800">{role.title}</h4>
         <p className="text-gray-700 font-semibold">{role.company}</p>
-        <p className="text-sm text-gray-500 flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
-          <span className="flex items-center">
-            <FaCalendarAlt className="mr-1.5" aria-hidden="true" /> {role.dates}
-          </span>
-          <span className="flex items-center">
-            <FaMapMarkerAlt className="mr-1.5" aria-hidden="true" /> {role.location}
-          </span>
-        </p>
+        <MetaLine
+          items={[
+            { icon: <FaCalendarAlt aria-hidden="true" />, text: role.dates },
+            { icon: <FaMapMarkerAlt aria-hidden="true" />, text: role.location },
+          ]}
+        />
       </div>
     </div>
 
-    <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-relaxed">
-      {role.bullets.map((bullet) => (
-        <li key={bullet}>{bullet}</li>
-      ))}
-    </ul>
+    <BulletList bullets={role.bullets} />
 
     {role.preview && (
       <Image
@@ -172,31 +167,8 @@ const RoleCard = ({ role }: { role: Role }) => (
       />
     )}
 
-    {role.links && (
-      <div className="flex flex-wrap gap-4 mt-4">
-        {role.links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-blue-700 font-medium hover:underline"
-          >
-            {link.label} <FaExternalLinkAlt className="text-xs" aria-hidden="true" />
-          </a>
-        ))}
-      </div>
-    )}
-
-    {role.tags && (
-      <div className="flex flex-wrap gap-2 mt-auto pt-4">
-        {role.tags.map((tag) => (
-          <span key={tag} className="bg-gray-100 text-gray-700 text-sm py-1 px-3 rounded-full">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
+    {role.links && <LinkRow links={role.links} />}
+    {role.tags && <TagList tags={role.tags} />}
   </article>
 );
 
@@ -207,9 +179,7 @@ const Experience = () => {
         <h2 className="text-4xl font-extrabold mb-10 text-gray-800 text-center">Experience</h2>
         {groups.map((group) => (
           <div key={group.heading} className="mb-12 last:mb-0">
-            <h3 className="text-2xl font-bold text-gray-700 mb-6 border-b border-gray-400 pb-2">
-              {group.heading}
-            </h3>
+            <GroupHeading>{group.heading}</GroupHeading>
             <div className="grid md:grid-cols-2 gap-8">
               {group.roles.map((role) => (
                 <RoleCard key={role.company} role={role} />
