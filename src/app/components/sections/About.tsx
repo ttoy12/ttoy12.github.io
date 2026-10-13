@@ -8,7 +8,7 @@ const About = () => {
 
   useEffect(() => {
     const options = {
-      strings: ['Developer', 'Problem Solver', 'Collaborater'],
+      strings: ['Developer', 'Problem Solver', 'Collaborator'],
       typeSpeed: 100,
       backSpeed: 50,
       backDelay: 1000,

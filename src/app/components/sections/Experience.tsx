@@ -67,15 +67,6 @@ const Experience = () => {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-2xl hover:scale-105">
-            <div className="flex justify-center items-center mb-4">
-              <Image
-                src=""
-                alt=""
-                height={250}
-                width={250}
-                className="transition-transform duration-300 transform hover:scale-110 rounded border border-gray-300"
-              />
-            </div>
             <h3 className="text-2xl font-bold text-gray-800">E & F Financial Services, Inc.</h3>
             <h4 className="text-xl text-gray-600 font-semibold mb-1">Administrative Assistant</h4>
             <p className="text-gray-500 mb-4 flex items-center justify-center">

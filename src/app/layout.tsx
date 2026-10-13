@@ -4,9 +4,27 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const description =
+  "Thomas Toy — software engineer and UC Santa Cruz CS graduate. Projects, experience, and drone photography.";
+
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Thomas Toy Portfolio",
+  metadataBase: new URL("https://www.ttoy2.com"),
+  title: "Thomas Toy · Software Engineer",
+  description,
+  openGraph: {
+    title: "Thomas Toy · Software Engineer",
+    description,
+    url: "/",
+    siteName: "Thomas Toy",
+    images: [{ url: "/my_photo2.jpg", alt: "Thomas Toy" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Thomas Toy · Software Engineer",
+    description,
+    images: ["/my_photo2.jpg"],
+  },
 };
 
 export default function RootLayout({
