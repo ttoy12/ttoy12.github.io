@@ -134,13 +134,22 @@ const projects: Project[] = [
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <article className={`${cardClassName} overflow-hidden`}>
-    <div className="relative h-56 -mx-6 -mt-6 mb-5 bg-gray-100 border-b border-gray-200">
+    <div className="relative h-60 -mx-6 -mt-6 mb-5 overflow-hidden border-b border-gray-200 bg-gray-800">
+      {/* Blurred, zoomed copy fills the frame so non-matching aspect ratios don't leave empty bars */}
+      <Image
+        src={project.imageSrc}
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="200px"
+        className="object-cover scale-125 blur-2xl opacity-80"
+      />
       <Image
         src={project.imageSrc}
         alt={project.imageAlt}
         fill
         sizes="(min-width: 768px) 50vw, 100vw"
-        className="object-contain p-2"
+        className="object-contain p-4 drop-shadow-2xl"
       />
     </div>
 
