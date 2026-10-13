@@ -4,6 +4,13 @@ import Image from 'next/image'
 import Typed from 'typed.js'
 import { FaEnvelope, FaFileAlt } from 'react-icons/fa'
 
+const skillGroups = [
+  { label: 'Languages', skills: ['TypeScript', 'JavaScript', 'Python', 'C++', 'C', 'SQL'] },
+  { label: 'Frameworks & Platforms', skills: ['React', 'Next.js', 'Node.js', 'Express', 'React Native', 'Expo', 'Vue.js', 'Tailwind CSS', 'Supabase', 'Firebase'] },
+  { label: 'Tools', skills: ['Git', 'Jest', 'Storybook', 'D3.js', 'Figma', 'Jira'] },
+  { label: 'Robotics & AI', skills: ['Teleoperation', 'Data Annotation', 'Robot Testing', 'Quality Assurance'] },
+]
+
 const About = () => {
   const typedElement = useRef(null);
 
@@ -49,7 +56,7 @@ const About = () => {
           </p>
           <p className="text-lg mb-8">
             Outside of tech, I enjoy photography and design &mdash; check out my{' '}
-            <a href="#gallery" className="underline underline-offset-4 hover:text-blue-300">gallery</a>.
+            <a href="#gallery" className="underline underline-offset-4 hover:text-accent-300">gallery</a>.
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-10">
@@ -57,7 +64,7 @@ const About = () => {
               href="/ThomasToy_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
             >
               <FaFileAlt aria-hidden="true" /> Resume
             </a>
@@ -69,14 +76,21 @@ const About = () => {
             </a>
           </div>
 
-          <h3 className="text-xl font-bold mb-4">Skills/Languages/Tools/Frameworks</h3>
-          <div className="flex flex-wrap justify-center md:justify-start mb-8">
-            {['C++', 'C', 'Python', 'Node.js', 'JavaScript', 'React', 'Next.js', 'Expo', 'React Native', 'TypeScript', 'Vue.js', 'Jest', 'HTML', 'CSS', 'SQL', 'Firebase', 'Git'].map(skill => (
-              <span key={skill} className="bg-gray-800 text-white py-2 px-4 m-2 rounded-lg hover:scale-110 duration-300">
-                {skill}
-              </span>
+          <h2 className="sr-only">Skills</h2>
+          <dl className="space-y-4">
+            {skillGroups.map(({ label, skills }) => (
+              <div key={label}>
+                <dt className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-2">{label}</dt>
+                <dd className="flex flex-wrap justify-center md:justify-start gap-2">
+                  {skills.map(skill => (
+                    <span key={skill} className="bg-gray-800/90 text-white text-sm py-1.5 px-3 rounded-lg">
+                      {skill}
+                    </span>
+                  ))}
+                </dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
 
         {/* Image on the right for larger screens, top for smaller screens */}

@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
@@ -5,7 +6,7 @@ import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const inputClassName =
-  'w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500';
+  'w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-accent-500';
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -54,7 +55,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="w-full bg-blue-700 hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
+            className="w-full bg-accent-700 hover:bg-accent-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
           >
             {status === 'sending' ? 'Sending…' : 'Send Message'}
           </button>

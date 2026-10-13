@@ -46,7 +46,7 @@ export const LinkRow = ({ links }: { links: CardLink[] }) => (
         href={link.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-blue-700 font-medium hover:underline"
+        className="inline-flex items-center gap-2 text-accent-700 font-medium hover:underline"
       >
         {link.icon ?? <FaExternalLinkAlt className="text-xs" aria-hidden="true" />} {link.label}
       </a>

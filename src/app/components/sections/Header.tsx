@@ -1,34 +1,56 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 
-interface HeaderProps {
-  menuOpen: boolean;
-  toggleMenu: () => void;
-}
+const sections = [
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'gallery', label: 'Gallery' },
+  { id: 'contact', label: 'Contact' },
+];
 
-const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 70;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - headerOffset;
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState('about');
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      // element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // Highlight the nav item for whichever section is crossing the middle of the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    );
+    sections.forEach(({ id }) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="bg-black text-white p-6 fixed top-0 left-0 w-full z-10 z-50" role='navigation'>
+    <header className="bg-black text-white p-6 fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <Image src="/logo_no_bg.jpg?v=2" height={45} width={45} alt="logo" />
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setMenuOpen(false);
+          }}
+          aria-label="Back to top"
+        >
+          <Image src="/logo_no_bg.jpg?v=2" height={45} width={45} alt="" />
+        </a>
         <button
           className="text-white md:hidden focus:outline-none"
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="site-nav"
         >
           <svg
             className="w-6 h-6"
@@ -36,6 +58,7 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -46,50 +69,27 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, toggleMenu }) => {
           </svg>
         </button>
         <nav
+          id="site-nav"
+          aria-label="Main"
           className={`${menuOpen ? 'block' : 'hidden'
             } md:flex space-x-4 absolute md:static w-full md:w-auto left-0 top-full md:top-auto`}
         >
           <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 bg-black">
-            <li className="text-xl">
-              <button
-                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('about'); toggleMenu(); }}
-              >
-                About
-              </button>
-            </li>
-            <li className="text-xl">
-              <button
-                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('projects'); toggleMenu(); }}
-              >
-                Projects
-              </button>
-            </li>
-            <li className="text-xl">
-              <button
-                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('experience'); toggleMenu(); }}
-              >
-                Experience
-              </button>
-            </li>
-            <li className="text-xl">
-              <button
-                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('gallery'); toggleMenu(); }}
-              >
-                Gallery
-              </button>
-            </li>
-            <li className="text-xl">
-              <button
-                className="px-3 py-2 border-b-2 border-transparent hover:border-yellow-400 transition-all duration-500"
-                onClick={() => { scrollToSection('contact'); toggleMenu(); }}
-              >
-                Contact
-              </button>
-            </li>
+            {sections.map(({ id, label }) => {
+              const active = id === activeId;
+              return (
+                <li key={id} className="text-xl">
+                  <a
+                    href={`#${id}`}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={active ? 'location' : undefined}
+                    className={`inline-block px-3 py-2 border-b-2 transition-all duration-500 hover:border-accent-400 ${active ? 'border-accent-400 text-accent-300' : 'border-transparent'}`}
+                  >
+                    {label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
