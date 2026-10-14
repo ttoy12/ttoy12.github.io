@@ -33,6 +33,48 @@ interface RoleGroup {
 
 const groups: RoleGroup[] = [
   {
+    heading: 'Robotics & AI',
+    roles: [
+      {
+        company: '1X',
+        title: 'Data Collection Operator',
+        dates: 'Apr 2026 – Present',
+        location: 'San Carlos, California',
+        logo: '/1X_logo.png',
+        bullets: [
+          'Teleoperate humanoid robots in household environments to collect training data for robot autonomy',
+          'Test new robot OS builds, reporting regressions and behavior issues to engineering',
+          'Execute test plans with engineers and document results to improve robot performance',
+          'Perform segmentation, annotation, and quality assurance on collected data'
+        ]
+      },
+      {
+        company: 'Labelbox',
+        title: 'Robotics Operator',
+        dates: 'Dec 2025 – Mar 2026',
+        location: 'San Francisco, California',
+        logo: '/labelbox_logo.png',
+        bullets: [
+          'Teleoperated and monitored robotic systems to defined specifications, safety regulations, and quality standards',
+          'Maintained detailed operational logs and tracked system performance',
+          'Reported anomalies to engineering teams and provided insights for troubleshooting and process improvements'
+        ]
+      },
+      {
+        company: 'T & I – AI Coaching & Consulting',
+        title: 'Co-Founder & AI Educator',
+        dates: 'Jul 2025 – Jan 2026',
+        location: 'San Mateo, California',
+        logo: '/T-I-logo.png',
+        bullets: [
+          'Co-founded a coaching practice helping older adults adopt AI tools in their everyday lives',
+          'Created beginner-friendly guides and interactive demos introducing chatbots and generative AI platforms',
+          'Led one-on-one coaching sessions to integrate AI into clients’ daily routines and workflows'
+        ]
+      }
+    ]
+  },
+  {
     heading: 'Software Engineering',
     roles: [
       {
@@ -77,48 +119,6 @@ const groups: RoleGroup[] = [
           src: '/UCSCPD/Item View GIF.gif',
           alt: 'Demo of the inventory item view'
         }
-      }
-    ]
-  },
-  {
-    heading: 'Robotics & AI',
-    roles: [
-      {
-        company: '1X',
-        title: 'Data Collection Operator',
-        dates: 'Apr 2026 – Present',
-        location: 'San Carlos, California',
-        logo: '/1X_logo.png',
-        bullets: [
-          'Teleoperate humanoid robots in household environments to collect training data for robot autonomy',
-          'Test new robot OS builds, reporting regressions and behavior issues to engineering',
-          'Execute test plans with engineers and document results to improve robot performance',
-          'Perform segmentation, annotation, and quality assurance on collected data'
-        ]
-      },
-      {
-        company: 'Labelbox',
-        title: 'Robotics Operator',
-        dates: 'Dec 2025 – Mar 2026',
-        location: 'San Francisco, California',
-        logo: '/labelbox_logo.png',
-        bullets: [
-          'Teleoperated and monitored robotic systems to defined specifications, safety regulations, and quality standards',
-          'Maintained detailed operational logs and tracked system performance',
-          'Reported anomalies to engineering teams and provided insights for troubleshooting and process improvements'
-        ]
-      },
-      {
-        company: 'T & I – AI Coaching & Consulting',
-        title: 'Co-Founder & AI Educator',
-        dates: 'Jul 2025 – Jan 2026',
-        location: 'San Mateo, California',
-        logo: '/T-I-logo.png',
-        bullets: [
-          'Co-founded a coaching practice helping older adults adopt AI tools in their everyday lives',
-          'Created beginner-friendly guides and interactive demos introducing chatbots and generative AI platforms',
-          'Led one-on-one coaching sessions to integrate AI into clients’ daily routines and workflows'
-        ]
       }
     ]
   },
