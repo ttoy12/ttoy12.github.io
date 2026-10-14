@@ -84,10 +84,7 @@ const Gallery = () => {
   const current = openIndex === null ? null : items[openIndex]
 
   return (
-    <section
-      id='gallery'
-      className='bg-gradient-to-r from-gray-300 to-gray-200 py-20'
-    >
+    <section id='gallery' className='bg-gray-50 py-20'>
       <div className='container mx-auto px-4'>
         <Reveal>
           <h2 className='mb-8 text-center text-4xl font-extrabold text-gray-800'>
