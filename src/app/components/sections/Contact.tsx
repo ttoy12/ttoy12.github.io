@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
+import Reveal from '../Reveal'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -36,7 +37,7 @@ const Contact = () => {
 
   return (
     <section id='contact' className='bg-gray-900 py-20 text-white'>
-      <div className='container mx-auto px-4'>
+      <Reveal className='container mx-auto px-4'>
         <h2 className='mb-4 text-center text-3xl font-bold'>Contact Me</h2>
         <p className='mb-8 text-center text-lg'>
           Feel free to get in touch with me through the form below.
@@ -110,7 +111,7 @@ const Contact = () => {
             )}
           </div>
         </form>
-      </div>
+      </Reveal>
     </section>
   )
 }

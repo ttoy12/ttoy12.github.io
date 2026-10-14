@@ -17,6 +17,7 @@ import {
   TagList,
   cardClassName
 } from '../CardParts'
+import Reveal from '../Reveal'
 
 interface Project {
   title: string
@@ -177,54 +178,78 @@ const projects: Project[] = [
   }
 ]
 
-const ProjectCard = ({ project }: { project: Project }) => (
-  <article className={`${cardClassName} overflow-hidden`}>
-    <div className='relative -mx-6 -mt-6 mb-5 h-60 overflow-hidden border-b border-gray-200 bg-gray-800'>
-      {/* Blurred, zoomed copy fills the frame so non-matching aspect ratios don't leave empty bars */}
-      <Image
-        src={project.imageSrc}
-        alt=''
-        aria-hidden='true'
-        fill
-        sizes='200px'
-        className='scale-125 object-cover opacity-80 blur-2xl'
-      />
-      <Image
-        src={project.imageSrc}
-        alt={project.imageAlt}
-        fill
-        sizes='(min-width: 768px) 50vw, 100vw'
-        className='object-contain p-4 drop-shadow-2xl'
-      />
-    </div>
+// Prefer the live site; otherwise the first link (usually the code)
+const primaryLink = (project: Project) =>
+  project.links.find(link => link.label === 'Live site') ?? project.links[0]
 
-    <div className='mb-4'>
-      <h4 className='text-xl font-bold text-gray-800'>{project.title}</h4>
-      <p className='font-semibold text-gray-700'>{project.subtitle}</p>
-      <MetaLine
-        items={[
-          { icon: <FaCalendarAlt aria-hidden='true' />, text: project.dates },
-          project.context
-        ]}
-      />
-    </div>
+const ProjectCard = ({ project }: { project: Project }) => {
+  const primary = primaryLink(project)
+  return (
+    <article
+      className={`${cardClassName} group relative overflow-hidden transition duration-300 focus-within:ring-2 focus-within:ring-accent-500 hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
+    >
+      <div className='relative -mx-6 -mt-6 mb-5 h-60 overflow-hidden border-b border-gray-200 bg-gray-800'>
+        {/* Blurred, zoomed copy fills the frame so non-matching aspect ratios don't leave empty bars */}
+        <Image
+          src={project.imageSrc}
+          alt=''
+          aria-hidden='true'
+          fill
+          sizes='200px'
+          className='scale-125 object-cover opacity-80 blur-2xl'
+        />
+        <Image
+          src={project.imageSrc}
+          alt={project.imageAlt}
+          fill
+          sizes='(min-width: 768px) 50vw, 100vw'
+          className='object-contain p-4 drop-shadow-2xl transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100'
+        />
+      </div>
 
-    <BulletList bullets={project.bullets} />
-    <LinkRow links={project.links} />
-    <TagList tags={project.tags} />
-  </article>
-)
+      <div className='mb-4'>
+        <h4 className='text-xl font-bold text-gray-800 transition-colors group-hover:text-accent-700'>
+          {/* Stretched link: its ::after covers the whole card so a click anywhere opens the primary link */}
+          <a
+            href={primary.href}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='after:absolute after:inset-0 focus:outline-none'
+          >
+            {project.title}
+            <span className='sr-only'> ({primary.label})</span>
+          </a>
+        </h4>
+        <p className='font-semibold text-gray-700'>{project.subtitle}</p>
+        <MetaLine
+          items={[
+            { icon: <FaCalendarAlt aria-hidden='true' />, text: project.dates },
+            project.context
+          ]}
+        />
+      </div>
+
+      <BulletList bullets={project.bullets} />
+      <LinkRow links={project.links} />
+      <TagList tags={project.tags} />
+    </article>
+  )
+}
 
 const Projects: React.FC = () => {
   return (
     <section id='projects' className='bg-gray-50 py-20'>
       <div className='container mx-auto px-4'>
-        <h2 className='mb-10 text-center text-4xl font-extrabold text-gray-800'>
-          Projects
-        </h2>
+        <Reveal>
+          <h2 className='mb-10 text-center text-4xl font-extrabold text-gray-800'>
+            Projects
+          </h2>
+        </Reveal>
         <div className='grid gap-8 md:grid-cols-2'>
-          {projects.map(project => (
-            <ProjectCard key={project.title} project={project} />
+          {projects.map((project, index) => (
+            <Reveal key={project.title} delay={(index % 2) * 120}>
+              <ProjectCard project={project} />
+            </Reveal>
           ))}
         </div>
       </div>

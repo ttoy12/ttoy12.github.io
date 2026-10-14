@@ -13,6 +13,15 @@ const sections = [
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeId, setActiveId] = useState('about')
+  const [scrolled, setScrolled] = useState(false)
+
+  // Stay transparent over the top of the hero, then turn solid once the page scrolls
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Highlight the nav item for whichever section is crossing the middle of the viewport
   useEffect(() => {
@@ -32,7 +41,13 @@ const Header = () => {
   }, [])
 
   return (
-    <header className='fixed left-0 top-0 z-50 w-full bg-black p-6 text-white'>
+    <header
+      className={`fixed left-0 top-0 z-50 w-full px-6 py-3 text-white transition-colors duration-300 ${
+        scrolled || menuOpen
+          ? 'bg-black/80 shadow-lg backdrop-blur-md'
+          : 'bg-transparent'
+      }`}
+    >
       <div className='container mx-auto flex items-center justify-between'>
         <a
           href='#'
@@ -43,7 +58,7 @@ const Header = () => {
           }}
           aria-label='Back to top'
         >
-          <Image src='/logo_no_bg.jpg?v=2' height={45} width={45} alt='' />
+          <Image src='/logo_no_bg.jpg?v=2' height={36} width={36} alt='' />
         </a>
         <button
           className='text-white focus:outline-none md:hidden'
@@ -75,16 +90,16 @@ const Header = () => {
             menuOpen ? 'block' : 'hidden'
           } absolute left-0 top-full w-full space-x-4 md:static md:top-auto md:flex md:w-auto`}
         >
-          <ul className='flex flex-col space-y-4 bg-black p-4 md:flex-row md:space-x-4 md:space-y-0 md:p-0'>
+          <ul className='flex flex-col space-y-4 bg-black/90 p-4 md:flex-row md:space-x-4 md:space-y-0 md:bg-transparent md:p-0'>
             {sections.map(({ id, label }) => {
               const active = id === activeId
               return (
-                <li key={id} className='text-xl'>
+                <li key={id} className='text-lg'>
                   <a
                     href={`#${id}`}
                     onClick={() => setMenuOpen(false)}
                     aria-current={active ? 'location' : undefined}
-                    className={`inline-block border-b-2 px-3 py-2 transition-all duration-500 hover:border-accent-400 ${active ? 'border-accent-400 text-accent-300' : 'border-transparent'}`}
+                    className={`inline-block border-b-2 px-3 py-1 transition-all duration-500 hover:border-accent-400 ${active ? 'border-accent-400 text-accent-300' : 'border-transparent'}`}
                   >
                     {label}
                   </a>

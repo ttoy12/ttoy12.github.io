@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa'
+import Reveal from '../Reveal'
 
 interface GalleryItem {
   src: string
@@ -88,43 +89,47 @@ const Gallery = () => {
       className='bg-gradient-to-r from-gray-300 to-gray-200 py-20'
     >
       <div className='container mx-auto px-4'>
-        <h2 className='mb-8 text-center text-4xl font-extrabold text-gray-800'>
-          Photography &amp; Design
-        </h2>
+        <Reveal>
+          <h2 className='mb-8 text-center text-4xl font-extrabold text-gray-800'>
+            Photography &amp; Design
+          </h2>
+        </Reveal>
 
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          {items.map((item, index) => (
-            <figure
-              key={item.src}
-              className='group relative aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl'
-            >
-              <button
-                type='button'
-                className='absolute inset-0 h-full w-full cursor-zoom-in rounded-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-500'
-                onClick={e => {
-                  lastTrigger.current = e.currentTarget
-                  setOpenIndex(index)
-                }}
-                aria-label={`View larger: ${item.caption}`}
+        <Reveal>
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+            {items.map((item, index) => (
+              <figure
+                key={item.src}
+                className='group relative aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl'
               >
-                {!loaded[index] && (
-                  <div className='absolute inset-0 animate-pulse rounded-lg bg-gray-200'></div>
-                )}
-                <Image
-                  src={item.src}
-                  alt={item.caption}
-                  fill
-                  sizes='(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw'
-                  className='transform object-cover transition-transform duration-300 group-hover:scale-105'
-                  onLoad={() => handleImageLoad(index)}
-                />
-              </button>
-              <figcaption className='pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3 pt-8 text-sm text-white opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
-                {item.caption}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+                <button
+                  type='button'
+                  className='absolute inset-0 h-full w-full cursor-zoom-in rounded-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-500'
+                  onClick={e => {
+                    lastTrigger.current = e.currentTarget
+                    setOpenIndex(index)
+                  }}
+                  aria-label={`View larger: ${item.caption}`}
+                >
+                  {!loaded[index] && (
+                    <div className='absolute inset-0 animate-pulse rounded-lg bg-gray-200'></div>
+                  )}
+                  <Image
+                    src={item.src}
+                    alt={item.caption}
+                    fill
+                    sizes='(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw'
+                    className='transform object-cover transition-transform duration-300 group-hover:scale-105'
+                    onLoad={() => handleImageLoad(index)}
+                  />
+                </button>
+                <figcaption className='pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3 pt-8 text-sm text-white opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
+                  {item.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Reveal>
       </div>
 
       {current && (

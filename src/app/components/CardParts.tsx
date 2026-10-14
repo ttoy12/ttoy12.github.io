@@ -10,7 +10,7 @@ export const GroupHeading = ({ children }: { children: React.ReactNode }) => (
 )
 
 export const cardClassName =
-  'bg-white p-6 rounded-lg shadow-md text-left flex flex-col'
+  'bg-white p-6 rounded-lg shadow-md text-left flex flex-col h-full'
 
 export interface MetaItem {
   icon: React.ReactNode
@@ -49,7 +49,7 @@ export const LinkRow = ({ links }: { links: CardLink[] }) => (
         href={link.href}
         target='_blank'
         rel='noopener noreferrer'
-        className='inline-flex items-center gap-2 font-medium text-accent-700 hover:underline'
+        className='relative z-10 inline-flex items-center gap-2 font-medium text-accent-700 hover:underline'
       >
         {link.icon ?? (
           <FaExternalLinkAlt className='text-xs' aria-hidden='true' />

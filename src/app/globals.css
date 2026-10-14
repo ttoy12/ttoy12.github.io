@@ -8,5 +8,5 @@ html {
 
 /* Keep anchor-linked sections clear of the fixed header */
 section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 4.5rem;
 }

@@ -10,6 +10,7 @@ import {
   TagList,
   cardClassName
 } from '../CardParts'
+import Reveal from '../Reveal'
 
 interface Role {
   company: string
@@ -202,15 +203,21 @@ const Experience = () => {
       className='bg-gradient-to-r from-gray-300 to-gray-200 py-20'
     >
       <div className='container mx-auto px-4'>
-        <h2 className='mb-10 text-center text-4xl font-extrabold text-gray-800'>
-          Experience
-        </h2>
+        <Reveal>
+          <h2 className='mb-10 text-center text-4xl font-extrabold text-gray-800'>
+            Experience
+          </h2>
+        </Reveal>
         {groups.map(group => (
           <div key={group.heading} className='mb-12 last:mb-0'>
-            <GroupHeading>{group.heading}</GroupHeading>
+            <Reveal>
+              <GroupHeading>{group.heading}</GroupHeading>
+            </Reveal>
             <div className='grid gap-8 md:grid-cols-2'>
-              {group.roles.map(role => (
-                <RoleCard key={role.company} role={role} />
+              {group.roles.map((role, index) => (
+                <Reveal key={role.company} delay={(index % 2) * 120}>
+                  <RoleCard role={role} />
+                </Reveal>
               ))}
             </div>
           </div>
