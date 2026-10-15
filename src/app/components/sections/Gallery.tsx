@@ -1,15 +1,10 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
-import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa'
+import Lightbox, { LightboxItem } from '../Lightbox'
 import Reveal from '../Reveal'
 
-interface GalleryItem {
-  src: string
-  caption: string
-}
-
-const items: GalleryItem[] = [
+const items: LightboxItem[] = [
   {
     src: '/gallery/me_sign_hill.JPG',
     caption: 'Sunset on Sign Hill, South San Francisco'
@@ -41,8 +36,6 @@ const items: GalleryItem[] = [
 const Gallery = () => {
   const [loaded, setLoaded] = useState(Array(items.length).fill(false))
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const closeButton = useRef<HTMLButtonElement>(null)
-  const lastTrigger = useRef<HTMLButtonElement | null>(null)
 
   const handleImageLoad = (index: number) => {
     setLoaded(prev => {
@@ -51,37 +44,6 @@ const Gallery = () => {
       return newLoaded
     })
   }
-
-  const close = useCallback(() => {
-    setOpenIndex(null)
-    lastTrigger.current?.focus()
-  }, [])
-
-  const step = useCallback((delta: number) => {
-    setOpenIndex(index =>
-      index === null ? null : (index + delta + items.length) % items.length
-    )
-  }, [])
-
-  // Keyboard controls and scroll lock while the lightbox is open
-  useEffect(() => {
-    if (openIndex === null) return
-    closeButton.current?.focus()
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
-      if (e.key === 'ArrowRight') step(1)
-      if (e.key === 'ArrowLeft') step(-1)
-    }
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [openIndex, close, step])
-
-  const current = openIndex === null ? null : items[openIndex]
 
   return (
     <section id='gallery' className='bg-gray-50 py-20'>
@@ -102,10 +64,7 @@ const Gallery = () => {
                 <button
                   type='button'
                   className='absolute inset-0 h-full w-full cursor-zoom-in rounded-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-500'
-                  onClick={e => {
-                    lastTrigger.current = e.currentTarget
-                    setOpenIndex(index)
-                  }}
+                  onClick={() => setOpenIndex(index)}
                   aria-label={`View larger: ${item.caption}`}
                 >
                   {!loaded[index] && (
@@ -129,70 +88,7 @@ const Gallery = () => {
         </Reveal>
       </div>
 
-      {current && (
-        <div
-          className='fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 p-4'
-          role='dialog'
-          aria-modal='true'
-          aria-label={current.caption}
-          onClick={close}
-        >
-          <button
-            ref={closeButton}
-            type='button'
-            onClick={close}
-            className='absolute right-4 top-4 p-2 text-2xl text-white hover:text-accent-300'
-            aria-label='Close'
-          >
-            <FaTimes aria-hidden='true' />
-          </button>
-          <button
-            type='button'
-            onClick={e => {
-              e.stopPropagation()
-              step(-1)
-            }}
-            className='absolute left-2 p-3 text-3xl text-white hover:text-accent-300 md:left-6'
-            aria-label='Previous image'
-          >
-            <FaChevronLeft aria-hidden='true' />
-          </button>
-          <button
-            type='button'
-            onClick={e => {
-              e.stopPropagation()
-              step(1)
-            }}
-            className='absolute right-2 p-3 text-3xl text-white hover:text-accent-300 md:right-6'
-            aria-label='Next image'
-          >
-            <FaChevronRight aria-hidden='true' />
-          </button>
-
-          <figure
-            className='flex w-full max-w-5xl flex-col items-center'
-            onClick={e => e.stopPropagation()}
-          >
-            <div className='relative h-[75vh] w-full'>
-              <Image
-                key={current.src}
-                src={current.src}
-                alt={current.caption}
-                fill
-                sizes='(min-width: 1024px) 1024px, 100vw'
-                className='object-contain'
-                priority
-              />
-            </div>
-            <figcaption className='mt-4 text-center text-white'>
-              {current.caption}
-              <span className='mt-1 block text-sm text-gray-400'>
-                {openIndex! + 1} / {items.length}
-              </span>
-            </figcaption>
-          </figure>
-        </div>
-      )}
+      <Lightbox items={items} index={openIndex} onChange={setOpenIndex} />
     </section>
   )
 }

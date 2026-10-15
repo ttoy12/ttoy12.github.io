@@ -1,9 +1,11 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import {
   FaCalendarAlt,
   FaExternalLinkAlt,
   FaGithub,
+  FaImages,
   FaTrophy,
   FaUser,
   FaUsers
@@ -17,6 +19,7 @@ import {
   TagList,
   cardClassName
 } from '../CardParts'
+import Lightbox, { LightboxItem } from '../Lightbox'
 import Reveal from '../Reveal'
 
 interface Project {
@@ -29,6 +32,8 @@ interface Project {
   bullets: string[]
   tags: string[]
   links: CardLink[]
+  // Extra images shown in a lightbox; used when a project has no public link to click through to
+  screenshots?: LightboxItem[]
 }
 
 const personal: MetaItem = {
@@ -62,6 +67,44 @@ const devpost = (href: string): CardLink => ({
 
 // Ordered strongest/most recent first; each card's meta line notes whether it was solo, team, or a hackathon.
 const projects: Project[] = [
+  {
+    title: 'Property Manager',
+    subtitle: 'Private, local-first desktop app for landlords',
+    dates: 'Sep 2026 – Present',
+    context: personal,
+    imageSrc: '/PropertyManager/dashboard.png',
+    imageAlt: 'Property Manager dashboard with sample data',
+    bullets: [
+      'Replaces a spreadsheets-and-folders workflow with one app for properties, tenants, leases, rent, maintenance, and documents',
+      'Keeps all data on the user’s computer with no cloud account, plus backup and restore',
+      'Imports and exports Excel workbooks, and receives documents from a phone over home Wi-Fi via QR code',
+      'Built for and in daily use by a real property manager on Windows'
+    ],
+    tags: ['Tauri', 'Rust', 'React', 'TypeScript', 'SQLite', 'Tailwind CSS'],
+    links: [],
+    screenshots: [
+      {
+        src: '/PropertyManager/dashboard.png',
+        caption: 'Dashboard: occupancy, rent received, and what needs attention'
+      },
+      {
+        src: '/PropertyManager/property.png',
+        caption: 'A property with its units, leases, and tenants'
+      },
+      {
+        src: '/PropertyManager/rent.png',
+        caption: 'Monthly rent tracking with late payments flagged'
+      },
+      {
+        src: '/PropertyManager/maintenance.png',
+        caption: 'Maintenance requests by priority, status, and vendor'
+      },
+      {
+        src: '/PropertyManager/import.png',
+        caption: 'Importing an existing Excel spreadsheet'
+      }
+    ]
+  },
   {
     title: 'StrikeStack',
     subtitle: 'Bowling arsenal manager',
@@ -178,15 +221,18 @@ const projects: Project[] = [
   }
 ]
 
-// Prefer the live site; otherwise the first link (usually the code)
-const primaryLink = (project: Project) =>
+// Prefer the live site; otherwise the first link (usually the code). Undefined when a project has no public links.
+const primaryLink = (project: Project): CardLink | undefined =>
   project.links.find(link => link.label === 'Live site') ?? project.links[0]
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const primary = primaryLink(project)
+  const screenshots = project.screenshots ?? []
+  const [screenshotIndex, setScreenshotIndex] = useState<number | null>(null)
+  const clickable = Boolean(primary) || screenshots.length > 0
   return (
     <article
-      className={`${cardClassName} group relative overflow-hidden transition duration-300 focus-within:ring-2 focus-within:ring-accent-500 hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
+      className={`${cardClassName} relative overflow-hidden ${clickable ? 'group transition duration-300 focus-within:ring-2 focus-within:ring-accent-500 hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0' : ''}`}
     >
       <div className='relative -mx-6 -mt-6 mb-5 h-60 overflow-hidden border-b border-gray-200 bg-gray-800'>
         {/* Blurred, zoomed copy fills the frame so non-matching aspect ratios don't leave empty bars */}
@@ -209,16 +255,29 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <div className='mb-4'>
         <h4 className='text-xl font-bold text-gray-800 transition-colors group-hover:text-accent-700'>
-          {/* Stretched link: its ::after covers the whole card so a click anywhere opens the primary link */}
-          <a
-            href={primary.href}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='after:absolute after:inset-0 focus:outline-none'
-          >
-            {project.title}
-            <span className='sr-only'> ({primary.label})</span>
-          </a>
+          {/* Stretched link: its ::after covers the whole card so a click anywhere opens the primary link (or the screenshots) */}
+          {primary ? (
+            <a
+              href={primary.href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='after:absolute after:inset-0 focus:outline-none'
+            >
+              {project.title}
+              <span className='sr-only'> ({primary.label})</span>
+            </a>
+          ) : screenshots.length > 0 ? (
+            <button
+              type='button'
+              onClick={() => setScreenshotIndex(0)}
+              className='text-left after:absolute after:inset-0 focus:outline-none'
+            >
+              {project.title}
+              <span className='sr-only'> (view screenshots)</span>
+            </button>
+          ) : (
+            project.title
+          )}
         </h4>
         <p className='font-semibold text-gray-700'>{project.subtitle}</p>
         <MetaLine
@@ -230,8 +289,25 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       <BulletList bullets={project.bullets} />
-      <LinkRow links={project.links} />
+      {project.links.length > 0 && <LinkRow links={project.links} />}
+      {screenshots.length > 0 && (
+        <div className='mt-4'>
+          <button
+            type='button'
+            onClick={() => setScreenshotIndex(0)}
+            className='relative z-10 inline-flex items-center gap-2 font-medium text-accent-700 hover:underline'
+          >
+            <FaImages aria-hidden='true' /> View screenshots (
+            {screenshots.length})
+          </button>
+        </div>
+      )}
       <TagList tags={project.tags} />
+      <Lightbox
+        items={screenshots}
+        index={screenshotIndex}
+        onChange={setScreenshotIndex}
+      />
     </article>
   )
 }
