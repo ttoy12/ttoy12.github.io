@@ -188,23 +188,6 @@ const projects: Project[] = [
     ]
   },
   {
-    title: 'Yujafiy',
-    subtitle: 'Voice changer for lecture videos',
-    dates: 'Jan 2024',
-    context: hackathon('CruzHacks 2024'),
-    imageSrc: '/yujafiy.png',
-    imageAlt: 'Yujafiy Chrome extension',
-    bullets: [
-      'Chrome extension that swaps the voice in lecture videos to boost student engagement',
-      'Built the extension front end, which works with a Flask backend using the TopMedia API for voice modification'
-    ],
-    tags: ['JavaScript', 'Chrome Extension', 'Python', 'Flask', 'TopMedia API'],
-    links: [
-      code('https://github.com/ttoy12/Yujafiy'),
-      devpost('https://devpost.com/software/yujafy')
-    ]
-  },
-  {
     title: 'Detective Dollar',
     subtitle: 'Mobile expense tracker',
     dates: 'Oct 2023 – Dec 2023',
