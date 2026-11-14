@@ -1,0 +1,248 @@
+%-------------------------
+% Resume in Latex
+% Based off of: https://github.com/jakegut/resume (Jake's Resume)
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage[normalem]{ulem}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+\fi
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\bfseries\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\ifPDFTeX
+  \pdfgentounicode=1
+\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Thomas Toy} \\ \vspace{1pt}
+    \small \faPhone* \ 415-254-8741 ~ \href{mailto:thomastoy1415@gmail.com}{\faEnvelope \ \underline{thomastoy1415@gmail.com}} ~
+    \href{https://linkedin.com/in/thomas-toy}{\faLinkedin \ \underline{linkedin.com/in/thomas-toy}} ~
+    \href{https://github.com/ttoy12}{\faGithub \ \underline{github.com/ttoy12}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California Santa Cruz}{August 2024}
+      {Bachelor of Science in Computer Science}{Santa Cruz, California}
+  \resumeSubHeadingListEnd
+
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C++, C, JavaScript, TypeScript, SQL, HTML/CSS} \\
+     \textbf{Frameworks \& Technologies}{: React, Next.js, Node.js, Express, Firebase, REST APIs, Expo Go} \\
+     \textbf{Developer Tools}{: Git, GitHub, VS Code, Jira, Confluence, Jest} \\
+     \textbf{Robotics / AI}{: Teleoperation, Data Annotation, Quality Assurance, Robot Testing}
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {1X Technologies}{April 2026 -- Present}
+      {Robotics Operator}{San Carlos, CA}
+      \resumeItemListStart
+        \resumeItem{Teleoperated humanoid robots in household task environments, supporting data collection and task execution for robot autonomy development while maintaining safety and quality standards.}
+        \resumeItem{Performed dataset quality assurance, including data labeling, segmentation, and annotation review.}
+        \resumeItem{Documented robot behaviors, tracked system errors and edge cases, and communicated findings with engineering teams to improve reliability and workflows.}
+        \resumeItem{Collaborated closely with AI and engineering teams to refine task workflows that supported robot autonomy training and performance improvements.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Labelbox}{December 2025 -- March 2026}
+      {Robotics Operator}{San Francisco, CA}
+      \resumeItemListStart
+        \resumeItem{Teleoperated and monitored robotic systems to ensure processes met defined specifications, safety regulations, and quality standards.}
+        \resumeItem{Maintained operational logs, monitored system performance, and reported anomalies to engineering teams for troubleshooting and workflow improvements.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {T \& I - AI Coaching \& Consulting}{July 2025 -- January 2026}
+      {Co-Founder / AI Educator}{San Mateo, CA}
+      \resumeItemListStart
+        \resumeItem{Co-founded a personal passion project aimed at helping older adults explore and adopt AI tools in their daily lives.}
+        \resumeItem{Created beginner-friendly guides and interactive demos introducing clients to chatbots and various generative AI platforms.}
+        \resumeItem{Conducted personalized 1-on-1 coaching sessions with clients, helping them integrate AI into their daily routines and workflows}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {E \& F Financial Services, Inc.}{June 2022 -- November 2025}
+      {Administrative Assistant}{San Mateo, CA}
+      \resumeItemListStart
+        \resumeItem{Scheduled and coordinated meetings, ensuring seamless communication and time management.}
+        \resumeItem{Organized and maintained filing systems, improving accessibility and data retrieval.}
+        \resumeItem{Cleared outdated records and streamlined data management for accuracy and compliance.}
+        \resumeItem{Drafted and formatted emails, ensuring professionalism and clarity in business communication.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {UNIBA.INC}{July 2024 -- August 2024}
+      {Software Engineer Intern}{Tokyo, Japan}
+      \resumeItemListStart
+        \resumeItem{Revamped the front-end framework by transitioning from EJS to Next.js, achieving 30\% faster initial load times and reinforcing web technologies expertise.}
+        \resumeItem{Executed front-end testing with Jest and Storybook, identifying and resolving 4 bugs to improve software reliability.}
+        \resumeItem{Processed and transformed data from the Holaspirit API to build an interactive chart with D3.js, applying REST API integration concepts.}
+        \resumeItem{Customized and integrated Pages CMS, resulting in a 50\% boost in content management efficiency across the team.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {UC Santa Cruz Police Department}{January 2024 -- June 2024}
+      {Software Engineer Intern}{Santa Cruz, California}
+      \resumeItemListStart
+        \resumeItem{Developed an automated history tracking page to seamlessly log all actions taken on inventory items.}
+        \resumeItem{Integrated RFID scanners to pair with inventory system.}
+        \resumeItem{Implemented robust RESTful API endpoints with Express, Node.js, and OpenAPI to manage inventory operations.}
+        \resumeItem{Collaborated closely with end users to gather feedback and iteratively refine designs in Figma.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Local 2 Child and Elder Care Plan}{July 2018 -- August 2020}
+      {Administrative Assistant}{San Francisco, California}
+      \resumeItemListStart
+        \resumeItem{Conducted outbound and inbound phone calls with clients to help get their applications processed in a timely manner.}
+        \resumeItem{Input and verified data of over 1000+ applications to support company operations}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{StrikeStack (Bowling Arsenal Manager)} $|$ \emph{Next.js, TypeScript, Supabase, Gemini API}}{April 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built a full stack web app that lets bowlers organize their bags, track equipment, and record scores and performance stats.}
+            \resumeItem{Developed a custom AI suggestion engine using the Gemini API to recommend bowling balls.}
+            \resumeItem{Integrated an equipment catalog powered by bowwwl.com data, used with permission.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Slots of Flavor (Restaurant Picker)} $|$ \emph{Next.js, Firebase, Google Places API}}{September 2024 -- Present}
+          \resumeItemListStart
+            \resumeItem{A full stack web application that spins a slot-machine reel through nearby open restaurants filtered by location, craving, distance, and price.}
+            \resumeItem{Migrated restaurant search from the Yelp API to the Google Places API and redesigned the app mobile-first.}
+            \resumeItem{Implemented email and Google sign-in with Firebase Auth, saving liked and disliked restaurants in Cloud Firestore.}
+            \resumeItem{50+ active users}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------LEADERSHIP-----------
+\section{Leadership / Extracurricular}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Engineering and Robotics Club}{September 2021 -- May 2022}
+      {Skyline College}{}
+      \resumeItemListStart
+        \resumeItem{Built and programmed small robotic systems using Arduino and the Arduino C/C++ code base.}
+        \resumeItem{Developed control logic for sensors, motors, and basic autonomous behaviors.}
+        \resumeItem{Collaborated with a multidisciplinary team to design and construct a solar-powered boat for competition, integrating electrical, solar, and mechanical components.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {United States Naval Sea Cadet Corps}{October 2015 -- May 2020}
+      {Squad Leader}{Arkansas Division}
+      \resumeItemListStart
+        \resumeItem{Managed squad activities, ensuring adherence to schedules and protocols during training sessions and events.}
+        \resumeItem{Led a squad of 7+ in various training exercises, demonstrating effective leadership and organizational skills.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+\end{document}
