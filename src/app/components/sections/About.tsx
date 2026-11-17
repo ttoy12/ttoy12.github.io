@@ -2,8 +2,32 @@
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Typed from 'typed.js'
-import { FaChevronDown, FaEnvelope, FaFileAlt } from 'react-icons/fa'
+import {
+  FaChevronDown,
+  FaEnvelope,
+  FaFileAlt,
+  FaGithub,
+  FaLinkedin,
+  FaRegEnvelope
+} from 'react-icons/fa'
 import Reveal from '../Reveal'
+import { email, githubUrl, linkedinUrl } from '../../site'
+
+const tagline = 'Humanoid robotics at 1X'
+
+const profileLinks = [
+  { label: 'GitHub', href: githubUrl, icon: <FaGithub aria-hidden='true' /> },
+  {
+    label: 'LinkedIn',
+    href: linkedinUrl,
+    icon: <FaLinkedin aria-hidden='true' />
+  },
+  {
+    label: 'Email',
+    href: `mailto:${email}`,
+    icon: <FaRegEnvelope aria-hidden='true' />
+  }
+]
 
 const skillGroups = [
   {
@@ -41,18 +65,27 @@ const skillGroups = [
 ]
 
 const About = () => {
-  const typedElement = useRef(null)
+  const typedElement = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
+    const element = typedElement.current
+    if (!element) return
+
+    // Reduced-motion users get the finished line straight away instead of the typing effect
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      element.textContent = tagline
+      return
+    }
+
     const options = {
-      strings: ['Humanoid robotics at 1X'],
+      strings: [tagline],
       typeSpeed: 60,
       startDelay: 1000,
       loop: false,
       showCursor: true
     }
 
-    const typed = new Typed(typedElement.current, options)
+    const typed = new Typed(element, options)
 
     return () => {
       typed.destroy()
@@ -79,7 +112,12 @@ const About = () => {
               Hello, I&apos;m Tommy
             </h1>
             <p className='mb-6 min-h-[2rem] text-2xl font-semibold text-gray-200'>
-              <span ref={typedElement}></span>
+              {/* Screen readers and crawlers get the whole line; the letter-by-letter copy is decorative */}
+              <span className='sr-only'>{tagline}</span>
+              <span ref={typedElement} aria-hidden='true'></span>
+              <noscript>
+                <span aria-hidden='true'>{tagline}</span>
+              </noscript>
             </p>
             <p className='mb-4 text-lg text-gray-100'>
               I&apos;m a UC Santa Cruz Computer Science graduate who likes
@@ -116,6 +154,23 @@ const About = () => {
                 <FaEnvelope aria-hidden='true' /> Contact me
               </a>
             </div>
+
+            <ul className='mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start'>
+              {profileLinks.map(({ label, href, icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    {...(href.startsWith('http') && {
+                      target: '_blank',
+                      rel: 'noopener noreferrer'
+                    })}
+                    className='inline-flex items-center gap-2 font-medium text-gray-200 underline-offset-4 transition-colors hover:text-accent-300 hover:underline'
+                  >
+                    {icon} {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Image on the right for larger screens, top for smaller screens */}

@@ -32,7 +32,7 @@ interface Project {
   bullets: string[]
   tags: string[]
   links: CardLink[]
-  // Extra images shown in a lightbox; used when a project has no public link to click through to
+  // Extra images shown in a lightbox; they also become the card's click target when a project has no public link
   screenshots?: LightboxItem[]
 }
 
@@ -200,7 +200,22 @@ const projects: Project[] = [
       'Visualizes spending habits with react-native-gifted-charts'
     ],
     tags: ['React Native', 'Expo', 'SQLite', 'gifted-charts'],
-    links: [code('https://github.com/RazrSlyr/DetectiveDollar')]
+    links: [code('https://github.com/RazrSlyr/DetectiveDollar')],
+    screenshots: [
+      {
+        src: '/DetectiveDollar/DetectiveDollar2.png',
+        caption:
+          'Home page: total spending and transactions for the selected day'
+      },
+      {
+        src: '/DetectiveDollar/DetectiveDollar5.png',
+        caption: 'Searchable history of every expense'
+      },
+      {
+        src: '/DetectiveDollar/DetectiveDollar4.jpg',
+        caption: 'Statistics: a year of spending broken down by category'
+      }
+    ]
   }
 ]
 
@@ -237,7 +252,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       <div className='mb-4'>
-        <h4 className='text-xl font-bold text-gray-800 transition-colors group-hover:text-accent-700'>
+        <h3 className='text-xl font-bold text-gray-800 transition-colors group-hover:text-accent-700'>
           {/* Stretched link: its ::after covers the whole card so a click anywhere opens the primary link (or the screenshots) */}
           {primary ? (
             <a
@@ -261,7 +276,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           ) : (
             project.title
           )}
-        </h4>
+        </h3>
         <p className='font-semibold text-gray-700'>{project.subtitle}</p>
         <MetaLine
           items={[

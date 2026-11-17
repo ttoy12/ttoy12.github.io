@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { githubUrl, linkedinUrl, siteUrl } from './site'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -8,9 +9,10 @@ const description =
   'Thomas (Tommy) Toy — UC Santa Cruz CS graduate building web apps and working hands-on with humanoid robots. Projects, experience, and photography.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.ttoy2.com'),
+  metadataBase: new URL(siteUrl),
   title: 'Thomas (Tommy) Toy · Portfolio',
   description,
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Thomas (Tommy) Toy · Portfolio',
     description,
@@ -27,6 +29,21 @@ export const metadata: Metadata = {
   }
 }
 
+// Structured data so search engines can tie this site to the right person and profiles
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Thomas Toy',
+  alternateName: 'Tommy Toy',
+  url: siteUrl,
+  image: `${siteUrl}/my_photo2.jpg`,
+  sameAs: [linkedinUrl, githubUrl],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'University of California, Santa Cruz'
+  }
+}
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -34,7 +51,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </body>
     </html>
   )
 }

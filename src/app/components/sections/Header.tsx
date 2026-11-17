@@ -61,7 +61,7 @@ const Header = () => {
           <Image src='/logo_no_bg.jpg?v=2' height={36} width={36} alt='' />
         </a>
         <button
-          className='text-white focus:outline-none md:hidden'
+          className='rounded text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 md:hidden'
           onClick={() => setMenuOpen(open => !open)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}

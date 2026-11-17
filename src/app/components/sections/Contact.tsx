@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 import Reveal from '../Reveal'
+import { email } from '../../site'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -16,6 +17,13 @@ const Contact = () => {
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!form.current) return
+
+    // Only a bot fills the hidden field. Show it success so it doesn't retry, but send nothing.
+    if (new FormData(form.current).get('bot_field')) {
+      setStatus('sent')
+      form.current.reset()
+      return
+    }
 
     setStatus('sending')
     emailjs
@@ -38,7 +46,7 @@ const Contact = () => {
   return (
     <section id='contact' className='bg-gray-900 py-20 text-white'>
       <Reveal className='container mx-auto px-4'>
-        <h2 className='mb-4 text-center text-3xl font-bold'>Contact Me</h2>
+        <h2 className='mb-4 text-center text-4xl font-extrabold'>Contact Me</h2>
         <p className='mb-8 text-center text-lg'>
           Feel free to get in touch with me through the form below.
         </p>
@@ -88,6 +96,17 @@ const Contact = () => {
               required
             ></textarea>
           </div>
+          {/* Honeypot: off-screen and skipped by keyboard and screen readers, so only bots fill it in */}
+          <div className='absolute -left-[9999px]' aria-hidden='true'>
+            <label htmlFor='bot-field'>Leave this field empty</label>
+            <input
+              type='text'
+              id='bot-field'
+              name='bot_field'
+              tabIndex={-1}
+              autoComplete='off'
+            />
+          </div>
           <button
             type='submit'
             disabled={status === 'sending'}
@@ -104,9 +123,19 @@ const Contact = () => {
               </p>
             )}
             {status === 'error' && (
-              <p className='flex items-center gap-2 text-red-400'>
-                <FaExclamationCircle aria-hidden='true' /> Something went wrong
-                sending your message. Please try again or email me directly.
+              <p className='flex items-start gap-2 text-red-400'>
+                <FaExclamationCircle
+                  className='mt-1 shrink-0'
+                  aria-hidden='true'
+                />
+                <span>
+                  Something went wrong sending your message. Please try again or
+                  email me directly at{' '}
+                  <a href={`mailto:${email}`} className='underline'>
+                    {email}
+                  </a>
+                  .
+                </span>
               </p>
             )}
           </div>

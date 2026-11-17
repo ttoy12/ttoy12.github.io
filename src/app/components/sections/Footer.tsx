@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaEnvelope, FaFileAlt, FaGithub, FaLinkedin } from 'react-icons/fa'
+import { email, githubUrl, linkedinUrl } from '../../site'
 
 const Footer = () => {
   return (
@@ -7,14 +8,14 @@ const Footer = () => {
       <div className='container mx-auto flex flex-col items-center gap-4 text-center'>
         <div className='flex space-x-6'>
           <a
-            href='mailto:thomastoy1415@gmail.com'
+            href={`mailto:${email}`}
             className='text-white transition-colors duration-300 hover:text-accent-400'
             aria-label='Email'
           >
             <FaEnvelope className='h-6 w-6' />
           </a>
           <a
-            href='https://www.linkedin.com/in/thomas-toy/'
+            href={linkedinUrl}
             target='_blank'
             rel='noopener noreferrer'
             className='text-white transition-colors duration-300 hover:text-accent-400'
@@ -23,7 +24,7 @@ const Footer = () => {
             <FaLinkedin className='h-6 w-6' />
           </a>
           <a
-            href='https://github.com/ttoy12'
+            href={githubUrl}
             target='_blank'
             rel='noopener noreferrer'
             className='text-white transition-colors duration-300 hover:text-accent-400'

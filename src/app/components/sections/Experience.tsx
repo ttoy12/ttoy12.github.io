@@ -10,7 +10,9 @@ import {
   TagList,
   cardClassName
 } from '../CardParts'
+import { LightboxItem } from '../Lightbox'
 import Reveal from '../Reveal'
+import ScreenshotsButton from '../ScreenshotsButton'
 
 interface Role {
   company: string
@@ -23,6 +25,8 @@ interface Role {
   bullets: string[]
   tags?: string[]
   preview?: { src: string; alt: string }
+  /** Larger images opened in a lightbox from a link on the card */
+  screenshots?: LightboxItem[]
   links?: CardLink[]
 }
 
@@ -118,7 +122,17 @@ const groups: RoleGroup[] = [
         preview: {
           src: '/UCSCPD/Item View GIF.gif',
           alt: 'Demo of the inventory item view'
-        }
+        },
+        screenshots: [
+          {
+            src: '/UCSCPD/UCSCPD Inventory Page View.png',
+            caption: 'Inventory page with search, filters, and export'
+          },
+          {
+            src: '/UCSCPD/Item View GIF.gif',
+            caption: 'Demo of the inventory item view'
+          }
+        ]
       }
     ]
   },
@@ -191,6 +205,7 @@ const RoleCard = ({ role }: { role: Role }) => (
       />
     )}
 
+    {role.screenshots && <ScreenshotsButton items={role.screenshots} />}
     {role.links && <LinkRow links={role.links} />}
     {role.tags && <TagList tags={role.tags} />}
   </article>
